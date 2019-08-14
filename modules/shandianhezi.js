@@ -17,7 +17,7 @@ var videoFlagId = "video_title";
 var littleVideoEnterFlag = "user_nick_name";
 
 //文章滑动次数
-var scanTimes = 15;
+var scanTimes = 10;
 
 //==============================程序启动区=======================================
 module_shandianhezi.start = function (common) {
