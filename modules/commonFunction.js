@@ -146,7 +146,7 @@ commonFunction.wakeUpScreen = function () {
 commonFunction.enterMainPage = function (appName) {
     toastLog("等待" + appName + "启动");
     launchApp(appName);
-    waitForPackage(getPackageName(appName));
+    // waitForPackage(getPackageName(appName));
     commonFunction.clickByText("跳过");
     commonFunction.clickByText("开启消息推送");
     commonFunction.clickById("normaldlg_btn_close");

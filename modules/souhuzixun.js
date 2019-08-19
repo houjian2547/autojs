@@ -96,8 +96,7 @@ function scanSingleArticle() {
 function scanVideo() {
     sleep(2000);
     if (!textEndsWith(video_option).exists()) {
-        // toastLog("自动识别视频按钮失败，请手动进入！");
-        alert("请手动点小视频按钮！");
+        toastLog("自动识别视频按钮失败，请手动进入！");
     } else {
         toastLog("视频按钮存在，点击按钮！");
         commonFunction.clickByText(video_option);

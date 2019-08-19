@@ -78,7 +78,7 @@ function selectArticle() {
  */
 function scanVideo() {
     if (!textEndsWith(video_option).exists()) {
-        alert("请手动点视频按钮！");
+        toastLog("请手动点视频按钮！");
     } else {
         toastLog("自动识别到视频按钮，点击进入！");
         commonFunction.clickByText(video_option);

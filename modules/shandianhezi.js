@@ -90,15 +90,11 @@ function scanFirstPage() {
  */
 function scanLittleVedio() {
     //点击短视频
-    while (true) {
-        alert("请手动点开" + littleVideo_option);
-        sleep(3000);
-        if (id(littleVideoEnterFlag).exists()) {
-            toastLog("已经进入了" + littleVideo_option);
-            break;
-        }
+    toastLog("请手动点开" + littleVideo_option);
+    sleep(3000);
+    if (id(littleVideoEnterFlag).exists()) {
+        toastLog("已经进入了" + littleVideo_option);
     }
-
     //开始滑动浏览
     //计数
     var swipeCount = 1;
@@ -128,13 +124,10 @@ function scanGoods() {
     var rmb_price = "rmb_price";
     //点赞
     var notLikeId = "不喜欢";
-    while (true) {
-        alert("请手动点开" + goods_option);
-        sleep(3000);
-        if (textEndsWith(liveZoneFlag).exists() || textEndsWith(LiveZoneEndFlag).exists() || id(rmb_price).exists()) {
-            toastLog("已经进入了" + goods_option);
-            break;
-        }
+    toastLog("请手动点开" + goods_option);
+    sleep(3000);
+    if (textEndsWith(liveZoneFlag).exists() || textEndsWith(LiveZoneEndFlag).exists() || id(rmb_price).exists()) {
+        toastLog("已经进入了" + goods_option);
     }
     // click(device.width / 2, device.height - 200);  // 2160 - 1950  = 200
     toastLog("点击了" + goods_option);

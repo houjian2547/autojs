@@ -84,7 +84,7 @@ function selectArticle() {
  */
 function scanVideo() {
     if (!textEndsWith(video_option).exists()) {
-        alert("请手动点视频按钮！");
+        toastLog("请手动点视频按钮！");
     } else {
         toastLog("自动识别到视频按钮，点击进入！");
         commonFunction.clickByText(video_option);
@@ -125,7 +125,7 @@ function scanSingleArticle() {
  * 浏览小说
  */
 function scanFiction() {
-    alert("请手动进入一篇小说阅读！");
+    toastLog("请手动进入一篇小说阅读！");
     sleep(3000);
     //判断当页是否存在可以点击的文章
     if (!id(fictionPageId).exists()) {
