@@ -13,6 +13,7 @@ var module_diandianxinwen = require('modules/diandianxinwen.js');
 var module_ertoutiao = require('modules/ertoutiao.js');
 var module_guangyingxinwen = require('modules/guangyingxinwen.js');
 var module_zhangshangredian = require('modules/zhangshangredian.js');
+var module_huoshanjisuban = require('modules/huoshanjisuban.js');
 // var module_qutoutiao = require('modules/qutoutiao.js');
 // var module_huitoutiao = require('modules/huitoutiao.js');
 // var module_jisutoutiao = require('modules/jisutoutiao.js');
@@ -20,8 +21,8 @@ var module_zhangshangredian = require('modules/zhangshangredian.js');
 var moduleNameArray = [module_zhifubao, module_shandianhezi,module_souhuzixun, 
     module_shuabaoduanshipin,module_jukandian, module_xiangkan, 
     module_weili, module_zhongqingkandian,module_diandianxinwen,
-    module_ertoutiao,module_guangyingxinwen,
-    module_zhangshangredian];
+    module_ertoutiao,module_guangyingxinwen,module_zhangshangredian,
+    module_huoshanjisuban];
 
 //============================== 全局变量=======================================
 
@@ -38,6 +39,7 @@ var appName_diandianxinwen = "点点新闻";
 var appName_ertoutiao = "二头条";
 var appName_guangyingxinwen = "光影新闻";
 var appName_zhangshangredian = "掌上热点";
+var appName_huoshanjisuban = "火山极速版";
 // var appName_qutoutiao = "趣头条";
 // var appName_huitoutiao = "惠头条";
 // var appName_jisutoutiao = "极速头条";
@@ -46,7 +48,7 @@ var appNameArray = [appName_zhifubao,
     appName_shandianhezi,appName_souhuzixun, appName_shuabaoduanshipin,
     appName_jukandian, appName_xiangkan, appName_weili, 
     appName_zhongqingkandian, appName_diandianxinwen,appName_ertoutiao,
-    appName_guangyingxinwen,appName_zhangshangredian,
+    appName_guangyingxinwen,appName_zhangshangredian,appName_huoshanjisuban,
     "随机应用"];
 
 //打开软件等待时间，单位秒
