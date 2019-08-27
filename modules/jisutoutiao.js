@@ -5,6 +5,8 @@ var firstPage_option = "首页";
 var searchKey = "tv_title";
 //计时id
 var timerId = "redpacket";
+//首页广告关闭id
+var adCloseId="iv_close";
 
 //==============================程序启动区=======================================
 module_jisutoutiao.start = function (common) {
@@ -26,15 +28,9 @@ function scanArticle() {
 }
 //选择某一篇文章
 function selectArticle() {
-    if (textEndsWith("拒绝").exists()) {
-        textEndsWith("拒绝").find().forEach(function (pos) {
-            var posb = pos.bounds();
-            if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 0 && posb.centerY() < 1800) {
-                click(posb.centerX(), posb.centerY());
-                toastLog("点击了");
-            }
-        });
-    }
+    commonFunction.clickByText("拒绝");
+    commonFunction.clickById(adCloseId);
+    
     if (!id(searchKey).exists()) {
         toastLog("文章不存在，滑动");
         swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);

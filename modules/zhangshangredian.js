@@ -46,7 +46,7 @@ function scanArticle() {
     if (textEndsWith(firstPage_option).exists()) {
         commonFunction.clickByText(firstPage_option);
     } else {
-        toastLog("请手动点击头条按钮，进入文章区！");
+        toastLog("请手动点击！");
     }
     sleep(3000);
     while (true) {
@@ -129,4 +129,4 @@ function scanVideo() {
 }
 
 //=====================================end===================================
-module.exports = module_weili;
+module.exports = module_zhangshangredian;

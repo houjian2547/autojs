@@ -5,7 +5,7 @@ var firstPage_option = "首页";
 var video_option = "视频";
 var options = [firstPage_option, video_option];
 //文章定位点：新闻来源
-var searchKey = "hh";
+var searchKey = "i9";
 //浏览次数
 var scanTime = 2;
 //视频播放id

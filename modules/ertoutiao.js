@@ -15,6 +15,7 @@ var videoButton = "vw_item_videoChildContent_frame";
 var fictionPageId = "read_pv_page";
 //首页广告关闭按钮id
 var pageAdCloseId = "iv_close";
+var adImageId = "iv_action_img";
 //==============================程序启动区=======================================
 module_ertoutiao.start = function (common) {
     commonFunction = common;
@@ -55,7 +56,10 @@ function scanArticle() {
 }
 //选择某一篇文章
 function selectArticle() {
-    commonFunction.clickById(pageAdCloseId);
+    if (id(adImageId).exists()) {
+        // commonFunction.clickById(pageAdCloseId);
+        click(540, 1640);
+    }
     //判断当页是否存在可以点击的文章
     if (!id(searchKey).exists()) {
         toastLog("文章不存在，滑动");
