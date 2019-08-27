@@ -25,10 +25,6 @@
 
         支付宝-zhifubao.js：蚂蚁森林
 
-        xxx趣头条-qutoutiao.js：首页，视频，短视频（亲测会封号）
-        
-        xxx东方头条：封号
-
         搜狐资讯-souhuzixun.js：首页，视频
 
         闪电盒子-shandianhezi.js：首页，短视频，逛逛金币
@@ -45,6 +41,23 @@
         
         中青看点-zhongqingkandian.js：首页
         
+        点点新闻-diandianxinwen.js：首页
+
+        二头条-ertoutiao.js：首页
+
+        光影新闻-guangyingxinwen.js：首页
+
+        掌上热点-zhangshangredian.js：首页
+
+        火山极速版-huoshanjisuban.js：首页
+
+    4.不能刷的app
+
+        趣头条：封号
+        
+        东方头条：封号
+
+        极速头条：封号
       
         
         
