@@ -5,13 +5,13 @@ var firstPage_option = "首页"; //首页文章区
 var video_option = "视频";
 var options = [firstPage_option, video_option];  //可以选择的模块
 //文章定位点
-var searchKey = "a2e";
+var searchKey = "a5n";//阅读数
 //文章金币计时器id
-var timer = "jt"; //评论
+var timer = "a2i"; //评论
 //浏览次数
 var scanTime = 10;
 //视频按钮id
-var videoButton = "a28";
+var videoButton = "kg";
 
 //==============================程序启动区=======================================
 module_zhongqingkandian.start = function (common) {
@@ -81,23 +81,24 @@ function scanSingleArticle() {
     if (id(timer).exists()) {
         toastLog(">>>>>>>>>>>金币阅读计时圈存在，开始浏览文章<<<<<<<<<");
         for (var i = 0; i < scanTime; i++) {
-            toastLog("浏览文章" + i);
+            toastLog("浏览文章:" + i + "/" + scanTime);
             swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);//下滑
             sleep(random(2, 5) * 1000);
         }
         toastLog(">>>>>>>>>>浏览文章结束<<<<<<<<<<<<");
-    } 
+    }
     //退回主页
     back();
 }
 
 //清理广告
 function clearAd() {
+    commonFunction.clickById("kn");
     //首页领取金币按钮
-    commonFunction.clickById("yj");
+    // commonFunction.clickById("x2");
     sleep(1000);
     //首页广告，关闭按钮
-    commonFunction.clickById("jp");
+    // commonFunction.clickById("kn");
 }
 
 //=====================================scanVideo===================================
@@ -119,7 +120,7 @@ function scanVideo() {
                     sleep(1000);
                 }
             });
-        } 
+        }
         swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);
     }
 }
