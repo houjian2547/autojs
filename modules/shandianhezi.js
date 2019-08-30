@@ -9,7 +9,7 @@ var goods_option = "逛逛领币"; //逛逛领币
 var options = [firstPage_option, littleVideo_option, goods_option];  //可以选择的模块
 
 //文章识别id
-var image2 = "image2";
+var image3 = "image3";
 //文章计时标记id
 var articleId = "back"; //文章来源id = title  新闻标题news-title  来源id = src-data-new  发布时间id = news-pubtime
 //视频标记
@@ -65,8 +65,8 @@ function selectModule() {
  */
 function scanFirstPage() {
     // swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
-    if (id(image2).exists()) {
-        id(image2).find().forEach(function (pos) {
+    if (id(image3).exists()) {
+        id(image3).find().forEach(function (pos) {
             var text = pos.text();
             if (pos.text().search("(广告)") != -1) {
                 log(">>>>>>>广告跳过<<<<<<<");
@@ -79,6 +79,10 @@ function scanFirstPage() {
                 click(posb.centerX(), posb.centerY());
                 toastLog("点击了文章，准备进入文章！");
                 sleep(2000);
+                if(textEndsWith("拒绝").exists()){
+                    commonFunction.clickByText("拒绝");
+                    sleep(1000);
+                }
                 if (id(articleId).findOne()) {
                     for (var i = 0; i < scanTimes; i++) {
                         toastLog("阅读文章中..." + i + "/" + scanTimes);

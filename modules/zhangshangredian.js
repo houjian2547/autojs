@@ -93,9 +93,6 @@ function scanSingleArticle() {
     }
     back();
     sleep(1000);
-    if (!textEndsWith(firstPage_option).exists()) {
-        back();
-    }
 }
 
 
