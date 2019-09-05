@@ -1,5 +1,6 @@
+var commonFunction = require('modules/commonFunction.js');
+
 var module_shandianhezi = {};
-var commonFunction;
 //============================== 全局变量=======================================
 
 //选择要启动的模块
@@ -27,6 +28,8 @@ var LiveZoneEndFlag = "更多热门直播";
 var rmb_price = "rmb_price";
 //点赞
 var notLikeId = "不喜欢";
+
+selectModule()
 
 //==============================程序启动区=======================================
 module_shandianhezi.start = function (common) {
@@ -199,4 +202,4 @@ function scanSingleGoods() {
 }
 //===================================end====================================
 
-module.exports = module_shandianhezi;
+// module.exports = module_shandianhezi;

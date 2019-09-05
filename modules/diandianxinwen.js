@@ -1,5 +1,5 @@
 var module_diandianxinwen = {};
-var commonFunction;
+var commonFunction = require('modules/commonFunction.js');
 
 //选择要启动的模块
 var firstPage_option = "首页"; //首页文章区
@@ -14,6 +14,8 @@ var scanTime = 8;
 var videoButton = "iv_video_start";
 
 //==============================程序启动区=======================================
+selectModule();
+
 module_diandianxinwen.start = function (common) {
     commonFunction = common;
     //选择模块
@@ -119,4 +121,4 @@ function scanVideo() {
 }
 
 //=====================================end===================================
-module.exports = module_diandianxinwen;
+// module.exports = module_diandianxinwen;

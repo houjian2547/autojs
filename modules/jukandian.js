@@ -1,6 +1,6 @@
-var module_jukandian = {};
+var commonFunction = require('modules/commonFunction.js');
 
-var commonFunction;
+var module_jukandian = {};
 
 var mainPageId = "我的";
 
@@ -36,6 +36,8 @@ var commentShareId_v2 = "v2_video_detail_bottom_comment_share";
 //集合
 var timers = [commentCollectId, commentLayoutId, commentTextId, commentShareId,
     commentCollectId_v2, commentLayoutId_v2, commentTextId_v2, commentShareId_v2];
+
+selectModule();
 
 //==============================程序启动区=======================================
 module_jukandian.start = function (common) {
@@ -164,4 +166,4 @@ function scanVideo() {
 }
 
 //=====================================end===================================
-module.exports = module_jukandian;
+// module.exports = module_jukandian;

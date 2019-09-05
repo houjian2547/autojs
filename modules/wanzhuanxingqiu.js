@@ -1,5 +1,5 @@
 var module_wanzhuanxingqiu = {};
-var commonFunction;
+var commonFunction = require('modules/commonFunction.js');
 //选择要启动的模块
 var firstPage_option = "头条";
 //文章定位点
@@ -14,6 +14,7 @@ var scanTime = 5;
 var pageAdCloseId = "iv_delete";
 
 //==============================程序启动区=======================================
+scanArticle();
 module_wanzhuanxingqiu.start = function (common) {
     commonFunction = common;
     scanArticle();
@@ -76,4 +77,4 @@ function clearAd() {
 }
 
 //=====================================end===================================
-module.exports = module_wanzhuanxingqiu;
+// module.exports = module_wanzhuanxingqiu;

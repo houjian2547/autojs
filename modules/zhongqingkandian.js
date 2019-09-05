@@ -1,5 +1,5 @@
 var module_zhongqingkandian = {};
-var commonFunction;
+var commonFunction = require('modules/commonFunction.js');
 //选择要启动的模块
 var firstPage_option = "首页"; //首页文章区
 var video_option = "视频";
@@ -14,6 +14,8 @@ var scanTime = 10;
 var videoButton = "kg";
 
 //==============================程序启动区=======================================
+selectModule();
+
 module_zhongqingkandian.start = function (common) {
     commonFunction = common;
     selectModule();
@@ -125,4 +127,4 @@ function scanVideo() {
     }
 }
 //=====================================end===================================
-module.exports = module_zhongqingkandian;
+// module.exports = module_zhongqingkandian;

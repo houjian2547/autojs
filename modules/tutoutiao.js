@@ -1,5 +1,5 @@
 var module_tutoutiao = {};
-var commonFunction;
+var commonFunction = require('modules/commonFunction.js');
 
 //文章金币计时器id
 var articleId = "iv_coin";
@@ -9,6 +9,7 @@ var searchKey = "tape_layout";
 var scanTime = 10;
 
 //==============================程序启动区=======================================
+scanArticle();
 module_tutoutiao.start = function (common) {
     commonFunction = common;
     scanArticle();
@@ -66,4 +67,4 @@ function scanSingleArticle() {
 }
 
 //=====================================end===================================
-module.exports = module_tutoutiao;
+// module.exports = module_tutoutiao;

@@ -1,4 +1,6 @@
-var commonFunction;
+var commonFunction = require('modules/commonFunction.js');
+
+// var commonFunction;
 var module_souhuzixun = {};
 //============================== 全局变量=======================================
 //选择要启动的模块
@@ -19,7 +21,30 @@ var timerName = "counting_img";
 //首页红包
 var readAwardId = "energy_open";
 
+startSelect();
+
 //==============================程序启动区=======================================
+
+function startSelect() {
+    //选择ui
+    var indexOption = dialogs.select("请选择一个模块", options);
+    //取消了选择
+    if (indexOption < 0) {
+        toast("您取消了选择");
+        exit();
+    }
+    //选择了某一项
+    toast("您选择的是" + options[indexOption]);
+    if (options[indexOption] == firstPage_option) {
+        while (true) {
+            selectArticle();
+        }
+    } else if (options[indexOption] == video_option) {
+        scanVideo();
+    }
+};
+
+
 //程序主入口
 module_souhuzixun.start = function (common) {
     commonFunction = common;
@@ -123,4 +148,4 @@ function scanVideo() {
 }
 
 
-module.exports = module_souhuzixun;
+// module.exports = module_souhuzixun;

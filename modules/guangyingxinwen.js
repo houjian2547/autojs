@@ -1,5 +1,5 @@
 var module_guangyingxinwen = {};
-var commonFunction;
+var commonFunction = require('modules/commonFunction.js');
 //选择要启动的模块
 var firstPage_option = "首页";
 var video_option = "视频";
@@ -14,6 +14,7 @@ var videoButton = "i8";
 var returnId = "i6";
 
 //==============================程序启动区=======================================
+selectModule();
 module_guangyingxinwen.start = function (common) {
     commonFunction = common;
     //选择模块
@@ -117,4 +118,4 @@ function scanSingleArticle() {
 }
 
 //=====================================end===================================
-module.exports = module_guangyingxinwen;
+// module.exports = module_guangyingxinwen;

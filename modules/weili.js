@@ -1,5 +1,5 @@
 var module_weili = {};
-var commonFunction;
+var commonFunction = require('modules/commonFunction.js');
 //选择要启动的模块
 var firstPage_option = "头条";
 var video_option = "视频";
@@ -22,6 +22,8 @@ var readTimeNoticeId = "text_ok";
 var readTimeBtnId = "bt_ok";
 
 //==============================程序启动区=======================================
+selectModule();
+
 module_weili.start = function (common) {
     commonFunction = common;
     selectModule();
@@ -146,4 +148,4 @@ function scanVideo() {
 }
 
 //=====================================end===================================
-module.exports = module_weili;
+// module.exports = module_weili;

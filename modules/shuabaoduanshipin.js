@@ -1,5 +1,4 @@
-var commonFunction;
-var module_shuabaoduanshipin = {};
+var commonFunction = require('modules/commonFunction.js');
 
 //=========================刷宝短视频==========================
 var likeId = "image_view"; //点赞id
@@ -7,22 +6,21 @@ var focusId = "关注";
 var tipShowId = "btn_view";//金币到账通知id
 var swipeCount = 1;
 
-module_shuabaoduanshipin.start = function (common) {
-    commonFunction = common;
+
+whileScanVideo();
+
+function whileScanVideo() {
     while (true) {
         scanVideo();
     }
 }
-module_shuabaoduanshipin.start_random = function (common) {
-    commonFunction = common;
-    scanVideo();
-}
+
 //===================================================================
 function scanVideo() {
     if (id(tipShowId).exists()) {
         id(tipShowId).findOne().click();
     }
-    click(500,1000);
+    click(500, 1000);
     //随机滑动
     var randomNum = random(5, 15);
     sleep(randomNum * 1000);
@@ -64,5 +62,3 @@ function clickFocus() {
     }
 }
 
-
-module.exports = module_shuabaoduanshipin;

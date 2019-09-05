@@ -1,6 +1,4 @@
-
-
-var commonFunction;
+var commonFunction = require('modules/commonFunction.js');
 
 var module_zhifubao = {};
 
@@ -9,8 +7,25 @@ var module_zhifubao = {};
 var myEnergeType = ["地铁出行", "线下支付", "行走", "共享单车", "地铁购票", "网络购票", "网购火车票", "生活缴费", "ETC缴费", "电子发票", "绿色办公", "咸鱼交易", "预约挂号"];
 var handimg = images.read("./modules/handPic.bmp");  //./modules/handPic.bmp     /storage/emulated/0/1/handPic.bmp
 
+startSelect();
 
 //==============================程序启动区=======================================
+
+function startSelect() {
+    //从主页进入蚂蚁森林主页
+    enterAntForest();
+    //收集自己的能量
+    //collectionMyEnergy();
+    clickForestArea();
+    //进入排行榜
+    enterRank();
+    //在排行榜检测是否有好有的能量可以收集
+    enterOthers();
+    //结束后返回主页面
+    whenComplete();
+};
+
+
 module_zhifubao.start = function (common) {
     commonFunction = common;
     //从主页进入蚂蚁森林主页
@@ -227,6 +242,6 @@ function clickForestArea() {
 }
 
 
-module.exports = module_zhifubao;
+// module.exports = module_zhifubao;
 
 

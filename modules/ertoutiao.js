@@ -1,5 +1,5 @@
 var module_ertoutiao = {};
-var commonFunction;
+var commonFunction = require('modules/commonFunction.js');
 //选择要启动的模块
 var firstPage_option = "首页";
 var video_option = "视频";
@@ -17,6 +17,9 @@ var fictionPageId = "read_pv_page";
 var pageAdCloseId = "iv_close";
 var adImageId = "iv_action_img";
 //==============================程序启动区=======================================
+
+selectModule();
+
 module_ertoutiao.start = function (common) {
     commonFunction = common;
     //选择模块
@@ -144,4 +147,4 @@ function scanFiction() {
     }
 }
 //=====================================end===================================
-module.exports = module_ertoutiao;
+// module.exports = module_ertoutiao;

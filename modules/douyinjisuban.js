@@ -1,18 +1,13 @@
-var commonFunction;
-var module_douyinjisuban = {}; 
+var commonFunction = require('modules/commonFunction.js');
 
-//===================================================
 var swipeCount = 1;
 
-module_kuaishoujisuban.start = function (common) {
-    commonFunction = common;
+whileScanVideo();
+
+function whileScanVideo(){
     while (true) {
         scanVideo();
     }
-}
-module_kuaishoujisuban.start_random = function (common) {
-    commonFunction = common;
-    scanVideo();
 }
 //===================================================================
 function scanVideo() {
@@ -23,5 +18,3 @@ function scanVideo() {
     gesture(1000, [random(300, 600), 1600], [random(300, 600), 200])
     swipeCount++;
 }
-
-module.exports = module_douyinjisuban;

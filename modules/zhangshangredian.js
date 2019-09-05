@@ -1,5 +1,5 @@
 var module_zhangshangredian = {};
-var commonFunction;
+var commonFunction = require('modules/commonFunction.js');
 //选择要启动的模块
 var firstPage_option = "首页";
 var video_option = "视频";
@@ -15,6 +15,7 @@ var videoButton = "iv_play";
 var scanTimes = 10;
 
 //==============================程序启动区=======================================
+selectModule();
 module_zhangshangredian.start = function (common) {
     commonFunction = common;
     selectModule();
@@ -126,4 +127,4 @@ function scanVideo() {
 }
 
 //=====================================end===================================
-module.exports = module_zhangshangredian;
+// module.exports = module_zhangshangredian;

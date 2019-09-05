@@ -1,4 +1,4 @@
-var commonFunction;
+var commonFunction = require('modules/commonFunction.js');
 var module_xiangkan = {};
 //选择要启动的模块
 var firstPage_option = "首页"; //首页文章区
@@ -25,6 +25,8 @@ var coin_img_Id = "coin_img_big";
 var videoButton = "video_item_play_btn";
 
 //==============================程序启动区=======================================
+selectModule();
+
 module_xiangkan.start = function (common) {
     commonFunction = common;
     //选择模块
@@ -145,4 +147,4 @@ function scanVideo() {
 }
 
 //=====================================end===================================
-module.exports = module_xiangkan;
+// module.exports = module_xiangkan;
