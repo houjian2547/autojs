@@ -79,13 +79,15 @@ function scanFirstPage() {
                 click(posb.centerX(), posb.centerY());
                 toastLog("点击了文章，准备进入文章！");
                 sleep(2000);
-                if(textEndsWith("拒绝").exists()){
+                if (textEndsWith("拒绝").exists()) {
                     commonFunction.clickByText("拒绝");
                     sleep(1000);
+                    return;
                 }
-                if (id(articleId).findOne()) {
-                    for (var i = 0; i < scanTimes; i++) {
-                        toastLog("阅读文章中..." + i + "/" + scanTimes);
+
+                if (id(articleId).exists()) {
+                    for (var i = 1; i <= scanTimes; i++) {
+                        toastLog("阅读文章中:" + i + "/" + scanTimes);
                         swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);//下滑
                         sleep(random(2, 5) * 1000);
                     }

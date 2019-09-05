@@ -151,7 +151,7 @@ commonFunction.enterMainPage = function (appName) {
     commonFunction.clickByText("开启消息推送");
     commonFunction.clickById("normaldlg_btn_close");
     //等待进入自己的主页
-    sleep(10000);
+    sleep(5000);
 }
 
 

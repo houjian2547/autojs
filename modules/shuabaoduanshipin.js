@@ -22,6 +22,7 @@ function scanVideo() {
     if (id(tipShowId).exists()) {
         id(tipShowId).findOne().click();
     }
+    click(500,1000);
     //随机滑动
     var randomNum = random(5, 15);
     sleep(randomNum * 1000);
