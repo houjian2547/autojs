@@ -18,7 +18,6 @@ var module_tutoutiao = require('modules/tutoutiao.js');
 var module_shuabaoduanshipin = require('modules/shuabaoduanshipin.js');
 var module_huoshanjisuban = require('modules/huoshanjisuban.js');
 var module_kuaishoujisuban = require('modules/kuaishoujisuban.js');
-var module_douyinjisuban = require('modules/douyinjisuban.js');
 // var module_qutoutiao = require('modules/qutoutiao.js');
 // var module_huitoutiao = require('modules/huitoutiao.js');
 // var module_jisutoutiao = require('modules/jisutoutiao.js');
@@ -28,7 +27,7 @@ var moduleNameArray = [module_zhifubao, module_shandianhezi, module_souhuzixun,
     module_weili, module_zhongqingkandian, module_diandianxinwen,
     module_ertoutiao, module_guangyingxinwen, module_zhangshangredian,
     module_wanzhuanxingqiu, module_tutoutiao,
-    module_shuabaoduanshipin, module_huoshanjisuban, module_kuaishoujisuban, module_douyinjisuban];
+    module_shuabaoduanshipin, module_huoshanjisuban, module_kuaishoujisuban];
 
 //============================== 全局变量=======================================
 
@@ -49,7 +48,6 @@ var appName_tutoutiao = "兔头条";
 var appName_shuabaoduanshipin = "刷宝短视频";
 var appName_huoshanjisuban = "火山极速版";
 var appName_kuaishoujisuban = "快手极速版";
-var appName_douyinjisuban = "抖音极速版";
 // var appName_qutoutiao = "趣头条";
 // var appName_huitoutiao = "惠头条";
 // var appName_jisutoutiao = "极速头条";
@@ -59,7 +57,7 @@ var appNameArray = [appName_zhifubao,
     appName_jukandian, appName_xiangkan, appName_weili,
     appName_zhongqingkandian, appName_diandianxinwen, appName_ertoutiao,
     appName_guangyingxinwen, appName_zhangshangredian, appName_wanzhuanxingqiu, appName_tutoutiao,
-    appName_shuabaoduanshipin, appName_huoshanjisuban, appName_kuaishoujisuban, appName_douyinjisuban,
+    appName_shuabaoduanshipin, appName_huoshanjisuban, appName_kuaishoujisuban,
     "随机应用"];
 
 //随机应用多少分钟换一次app

@@ -4,7 +4,7 @@ var commonFunction = require('modules/commonFunction.js');
 
 var scriptNameArray = ['zhifubao', 'shandianhezi', 'souhuzixun', 'jukandian', 'xiangkan', 'weili', 'zhongqingkandian',
     'diandianxinwen', 'ertoutiao', 'guangyingxinwen', 'zhangshangredian', 'wanzhuanxingqiu', 'tutoutiao',
-    'shuabaoduanshipin', 'huoshanjisuban', 'kuaishoujisuban', 'douyinjisuban'];
+    'shuabaoduanshipin', 'huoshanjisuban', 'kuaishoujisuban'];
 //============================== 全局变量=======================================
 
 //要启动的app名称
@@ -24,14 +24,13 @@ var appName_tutoutiao = "兔头条";
 var appName_shuabaoduanshipin = "刷宝短视频";
 var appName_huoshanjisuban = "火山极速版";
 var appName_kuaishoujisuban = "快手极速版";
-var appName_douyinjisuban = "抖音极速版";
 //可以选择的模块
 var appNameArray = [appName_zhifubao,
     appName_shandianhezi, appName_souhuzixun,
     appName_jukandian, appName_xiangkan, appName_weili,
     appName_zhongqingkandian, appName_diandianxinwen, appName_ertoutiao,
     appName_guangyingxinwen, appName_zhangshangredian, appName_wanzhuanxingqiu, appName_tutoutiao,
-    appName_shuabaoduanshipin, appName_huoshanjisuban, appName_kuaishoujisuban, appName_douyinjisuban];
+    appName_shuabaoduanshipin, appName_huoshanjisuban, appName_kuaishoujisuban];
 
 //==============================程序启动区=======================================
 //程序主入口

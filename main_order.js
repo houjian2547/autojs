@@ -5,14 +5,13 @@ var commonFunction = require('modules/commonFunction.js');
 var appName_shuabaoduanshipin = "刷宝短视频";
 var appName_huoshanjisuban = "火山极速版";
 var appName_kuaishoujisuban = "快手极速版";
-var appName_douyinjisuban = "抖音极速版";
 var appName_quanminxiaoshipin = "全民小视频";
-var appNameArray = [appName_shuabaoduanshipin, appName_huoshanjisuban, appName_kuaishoujisuban, appName_douyinjisuban, appName_quanminxiaoshipin];
+var appNameArray = [appName_shuabaoduanshipin, appName_huoshanjisuban, appName_kuaishoujisuban, appName_quanminxiaoshipin];
 
 //新闻类的列表
 // var newsList = ["weili", "xiangkan"];
 //视频类的列表
-// var videoList = ["shuabaoduanshipin", "huoshanjisuban", "kuaishoujisuban", "douyinjisuban"];
+// var videoList = ["shuabaoduanshipin", "huoshanjisuban", "kuaishoujisuban"];
 
 //每次阅读的时间:秒
 var normalRumTime = 20 * 60;
