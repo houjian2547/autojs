@@ -1,9 +1,80 @@
 
 var commonFunction = {};
 
-//==============================公共方法区 start=======================================
+//等待app启动时间
+var waitTime = 10 * 1000;
 
-//选择一个app
+/**
+* 启动app，进入app主页
+* @param appName
+* @param waitTime   等待时间，单位秒
+*/
+commonFunction.enterMainPage = function (appName) {
+    toastLog("等待" + appName + "启动");
+    launchApp(appName);
+    sleep(waitTime);
+    // waitForPackage(getPackageName(appName));
+    // commonFunction.clickByText("跳过");
+    // commonFunction.clickByText("开启消息推送");
+    // commonFunction.clickById("normaldlg_btn_close");
+}
+
+//停止当前脚本
+commonFunction.stopCurrent = function (exectuion) {
+    exectuion.getEngine().forceStop();
+    sleep(2000);
+    // back();
+    // sleep(1000);
+    // back();
+    // sleep(1000);
+    home();
+    sleep(5000);
+}
+
+//浏览小视频
+commonFunction.scanLittlVideo = function () {
+    var randomSleepTime = random(5, 10);
+    sleep(randomSleepTime * 1000);
+    toast("观看时间:" + randomSleepTime);
+    // var randomWidth = random(device.width / 4, device.width / 4 * 3);
+    // gesture(400, [randomWidth, device.height / 10 * 9], [randomWidth, device.height / 10])
+    gesture(500, [random(300, 600), 1600], [random(300, 600), 200])
+}
+
+
+//根据主页标识id退回主页并判断
+commonFunction.returnMainPageById = function (mainPageId) {
+    for (var i = 1; i < 4; i++) {
+        toastLog("退回次数" + i);
+        back();
+        sleep(2000);
+        if (id(mainPageId).exists()) {
+            toastLog("已退回到主页");
+            return;
+        }
+    }
+}
+
+//判断是否为主页
+commonFunction.ifMainPageById = function (mainPageId) {
+    if (!id(mainPageId).exists()) {
+        return false;
+    }
+    return true;
+}
+
+
+//判断计时器是否存在
+commonFunction.ifTimerExistsById = function (timerId) {
+    var exists_timer = false;
+    if (id(timerId).exists()) {
+        exists_timer = true;
+    }
+    return exists_timer;
+}
+
+
+//UI:选择一个app
 commonFunction.selectAppName = function (appNameOptions) {
     //选择ui
     var indexOption = dialogs.select("请选择一个要运行的app名字", appNameOptions);
@@ -15,7 +86,7 @@ commonFunction.selectAppName = function (appNameOptions) {
     return indexOption;
 }
 
-//===================================prepareThings  start=====================================
+//准备工作
 commonFunction.prepareThings = function () {
     log(">>>>>>>>>>>>>>>>>>>>>准备工作开始<<<<<<<<<<<<<<<<<<<<<<");
     // auto.waitFor(); 
@@ -23,14 +94,12 @@ commonFunction.prepareThings = function () {
     //按键监听
     commonFunction.registEvent();
     //唤醒屏幕，解锁
-    commonFunction.wakeUpScreen();
+    // commonFunction.wakeUpScreen();
     //屏幕分辨率适配
     commonFunction.setScreenMetrics();
     commonFunction.requestScreenCaptureTest();
     log(">>>>>>>>>>>>>>>>>>>>>准备工作结束<<<<<<<<<<<<<<<<<<<<<<");
 }
-//===================================prepareThings  end=====================================
-
 
 //屏幕分辨率适配
 commonFunction.setScreenMetrics = function () {
@@ -70,10 +139,10 @@ commonFunction.clickByText = function (text) {
         textEndsWith(text).find().forEach(function (pos) {
             var posb = pos.bounds();
             // log("posb.centerX():" + posb.centerX() + ",posb.centerY():" + posb.centerY());
-            if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 0 && posb.centerY() < 1800) {
-                click(posb.centerX(), posb.centerY());
-                toastLog("点击了" + text);
-            }
+            // if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 0 && posb.centerY() < 1800) {
+            click(posb.centerX(), posb.centerY());
+            toastLog("点击了" + text);
+            // }
         });
     }
 }
@@ -87,10 +156,10 @@ commonFunction.clickById = function (clickId) {
         id(clickId).find().forEach(function (pos) {
             var posb = pos.bounds();
             // log("posb.centerX():" + posb.centerX() + ",posb.centerY():" + posb.centerY());
-            if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 0 && posb.centerY() < 1800) {
-                click(posb.centerX(), posb.centerY());
-                toastLog("点击了" + clickId);
-            }
+            // if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 0 && posb.centerY() < 1800) {
+            click(posb.centerX(), posb.centerY());
+            toastLog("点击了" + clickId);
+            // }
         });
     }
 }
@@ -103,9 +172,9 @@ commonFunction.clickByDesc = function (desc) {
     if (descEndsWith(desc).exists()) {
         descEndsWith(desc).find().forEach(function (pos) {
             var posb = pos.bounds();
-            if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 0 && posb.centerY() < 1800) {
-                click(posb.centerX(), posb.centerY());
-            }
+            // if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 0 && posb.centerY() < 1800) {
+            click(posb.centerX(), posb.centerY());
+            // }
         });
     }
 }
@@ -123,7 +192,7 @@ commonFunction.registEvent = function () {
     });
 }
 
-//唤醒屏幕，解锁
+//唤醒屏幕，解锁，定制我自己的手机
 commonFunction.wakeUpScreen = function () {
     if (!device.isScreenOn()) {
         device.wakeUp();
@@ -134,24 +203,6 @@ commonFunction.wakeUpScreen = function () {
         gesture(1000, [545, 1212], [250, 1500], [825, 1500], [545, 1212]);
         sleep(1000);
     }
-}
-
-//=====================================enterMainPage start===================================
-
-/**
-* 启动app，进入app主页
-* @param appName
-* @param waitTime   等待时间，单位秒
-*/
-commonFunction.enterMainPage = function (appName) {
-    toastLog("等待" + appName + "启动");
-    launchApp(appName);
-    // waitForPackage(getPackageName(appName));
-    commonFunction.clickByText("跳过");
-    commonFunction.clickByText("开启消息推送");
-    commonFunction.clickById("normaldlg_btn_close");
-    //等待进入自己的主页
-    sleep(10000);
 }
 
 
@@ -177,39 +228,7 @@ commonFunction.shutdownApp = function (appName) {
 }
 
 
-//退回主页
-commonFunction.returnMainPage = function (mainPageId) {
-    for (var i = 1; i < 4; i++) {
-        toastLog("退回次数" + i);
-        back();
-        sleep(2000);
-        if (textEndsWith(mainPageId).exists()) {
-            toastLog("已退回到主页");
-            return;
-        }
-    }
-}
 
-//判断是否为主页
-commonFunction.ifMainPage = function (mainPageId) {
-    if (!textEndsWith(mainPageId).exists()) {
-        return false;
-    }
-    return true;
-}
-
-
-//判断计时器是否存在
-commonFunction.ifTimerExists = function (timers) {
-    var exists_timer = false;
-    for (let index = 0; index < timers.length; index++) {
-        if (id(timers[index]).exists()) {
-            exists_timer = true;
-            break;
-        }
-    }
-    return exists_timer;
-}
 
 //===================================公共方法区  end=====================================
 

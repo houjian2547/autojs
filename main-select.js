@@ -37,14 +37,58 @@ var appNameArray = [appName_zhifubao,
 mainEntrence();
 //==============================程序主要步骤=======================================
 function mainEntrence() {
-    //准备工作
     commonFunction.prepareThings();
-    //选择用启动的app
     var indexOption = commonFunction.selectAppName(appNameArray);
-    log("indexOption:" + indexOption);
-    toastLog(appNameArray[indexOption]);
     commonFunction.enterMainPage(appNameArray[indexOption]);
     var scriptName = scriptNameArray[indexOption];
     var exectuion = engines.execScriptFile("/sdcard/脚本/modules/" + scriptName + ".js");
-    exit();
+    
+    //8点以前顺序刷小视频
+    var isIExec = true;
+    while (isIExec) {
+        if (new Date().getHours() < 8) {
+            isIExec = false;
+        }
+        sleep(60 * 1000);//每一分钟检测一次
+    }
+    //停止脚本
+    toastLog(appName + "执行停止");
+    commonFunction.stopCurrent(exectuion);
+
+    //顺序刷小视频
+    scanLittlVideos();
+
+}
+
+
+//顺序刷小视频
+function scanLittlVideos() {
+    var littleVideoAppNameArray = [appName_shuabaoduanshipin, appName_huoshanjisuban, appName_kuaishoujisuban, appName_quanminxiaoshipin];
+    var normalRumTime = 20 * 60;//每次阅读的时间(20分钟)
+    while (true) {
+        for (var i = 0; i < littleVideoAppNameArray.length; i++) {
+            commonFunction.enterMainPage(littleVideoAppNameArray[i]);
+            exec(littleVideoAppNameArray[i], normalRumTime);
+        }
+    }
+}
+
+//执行脚本
+function exec(appName, seconds) {
+    var startDate = new Date();//开始时间
+    var exectuion = engines.execScriptFile("/sdcard/脚本/modules/xiaoshipin.js");
+    //计时器，检测时间
+    var isIExec = true;
+    while (isIExec) {
+        //计时
+        var runSeconds = ((new Date().getTime()) - startDate.getTime()) / 1000;
+        toastLog(appName + "已执行" + runSeconds + "秒");
+        if (runSeconds > seconds) {
+            isIExec = false;
+        }
+        sleep(60 * 1000);//每一分钟检测一次
+    }
+    //停止脚本
+    toastLog(appName + "执行停止");
+    commonFunction.stopCurrent(exectuion);
 }

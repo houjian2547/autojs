@@ -2,20 +2,13 @@ var commonFunction = require('modules/commonFunction.js');
 
 var swipeCount = 1;
 
+click(device.width / 4, device.height / 4);
 whileScanVideo();
 
 function whileScanVideo() {
     while (true) {
-        scanVideo();
+        toastLog("滑动次数:" + swipeCount);
+        commonFunction.scanLittlVideo();
+        swipeCount++;
     }
-}
-//===================================================================
-function scanVideo() {
-    click(300, 600);
-    //随机滑动
-    var randomNum = random(5, 15);
-    sleep(randomNum * 1000);
-    toast("sleep:" + randomNum + ", swipeCount:" + swipeCount);
-    gesture(1500, [random(300, 600), 1600], [random(300, 600), 200])
-    swipeCount++;
 }

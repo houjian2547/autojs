@@ -1,6 +1,5 @@
 var commonFunction = require('modules/commonFunction.js');
 
-//=========================刷宝短视频==========================
 var likeId = "image_view"; //点赞id
 var focusId = "关注";
 var tipShowId = "btn_view";//金币到账通知id
@@ -17,20 +16,10 @@ function whileScanVideo() {
 
 //===================================================================
 function scanVideo() {
-    if (id(tipShowId).exists()) {
-        id(tipShowId).findOne().click();
-    }
+    commonFunction.clickById(tipShowId);
     click(500, 1000);
-    //随机滑动
-    var randomNum = random(5, 15);
-    sleep(randomNum * 1000);
-    toast("sleep:" + randomNum + ", swipeCount:" + swipeCount);
-    //随机点赞和关注
-    // if (randomNum == 5 || randomNum == 10 || randomNum == 15) {
-    //     clickLike();
-    //     clickFocus();
-    // }
-    gesture(1500, [random(300, 600), 1600], [random(300, 600), 200])
+    toastLog("滑动次数:" + swipeCount);
+    commonFunction.scanLittlVideo();
     swipeCount++;
 }
 

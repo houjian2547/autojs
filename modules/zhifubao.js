@@ -12,6 +12,7 @@ startSelect();
 //==============================程序启动区=======================================
 
 function startSelect() {
+    commonFunction.prepareThings();
     //从主页进入蚂蚁森林主页
     enterAntForest();
     //收集自己的能量

@@ -24,7 +24,6 @@ function init() {
         for (var i = 0; i < appNameArray.length; i++) {
             toastLog("准备进入" + appNameArray[i]);
             commonFunction.enterMainPage(appNameArray[i]);
-            click(device.width / 4, device.height / 4);
             // exec(videoList[i], normalRumTime);
             exec(appNameArray[i], normalRumTime);
         }
@@ -57,17 +56,6 @@ function exec(appName, seconds) {
     }
     //停止脚本
     toastLog(appName + "执行停止");
-    stopCurrent(exectuion);
+    commonFunction.stopCurrent(exectuion);
 }
 
-//停止当前脚本
-function stopCurrent(exectuion) {
-    exectuion.getEngine().forceStop();
-    sleep(2000);
-    // back();
-    // sleep(1000);
-    // back();
-    // sleep(1000);
-    home();
-    sleep(5000);
-}
