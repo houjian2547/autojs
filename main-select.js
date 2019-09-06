@@ -42,7 +42,7 @@ function mainEntrence() {
     commonFunction.enterMainPage(appNameArray[indexOption]);
     var scriptName = scriptNameArray[indexOption];
     var exectuion = engines.execScriptFile("/sdcard/脚本/modules/" + scriptName + ".js");
-    
+
     //8点以前顺序刷小视频
     var isIExec = true;
     while (isIExec) {

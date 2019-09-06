@@ -6,7 +6,7 @@ var appName_shuabaoduanshipin = "刷宝短视频";
 var appName_huoshanjisuban = "火山极速版";
 var appName_kuaishoujisuban = "快手极速版";
 var appName_quanminxiaoshipin = "全民小视频";
-var appNameArray = [appName_shuabaoduanshipin, appName_huoshanjisuban, appName_kuaishoujisuban, appName_quanminxiaoshipin];
+var littleVideoAppNameArray = [appName_shuabaoduanshipin, appName_huoshanjisuban, appName_kuaishoujisuban, appName_quanminxiaoshipin];
 
 //新闻类的列表
 // var newsList = ["weili", "xiangkan"];
@@ -18,23 +18,13 @@ var normalRumTime = 20 * 60;
 
 init();
 function init() {
-    //准备工作
     commonFunction.prepareThings();
     while (true) {
-        for (var i = 0; i < appNameArray.length; i++) {
-            toastLog("准备进入" + appNameArray[i]);
-            commonFunction.enterMainPage(appNameArray[i]);
-            // exec(videoList[i], normalRumTime);
-            exec(appNameArray[i], normalRumTime);
+        for (var i = 0; i < littleVideoAppNameArray.length; i++) {
+            toastLog("准备进入" + littleVideoAppNameArray[i]);
+            commonFunction.enterMainPage(littleVideoAppNameArray[i]);
+            exec(littleVideoAppNameArray[i], normalRumTime);
         }
-        //7点前刷视频
-        // if (new Date().getHours() > 7) {
-        //     var appNum = newsList.length;
-        //     for (var i = 0; i < appNum; i++) {
-        //         exec(newsList[i], normalRumTime);
-        //     }
-        // } else {
-        // }
     }
 }
 

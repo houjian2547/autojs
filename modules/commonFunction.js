@@ -36,8 +36,6 @@ commonFunction.scanLittlVideo = function () {
     var randomSleepTime = random(5, 10);
     sleep(randomSleepTime * 1000);
     toast("观看时间:" + randomSleepTime);
-    // var randomWidth = random(device.width / 4, device.width / 4 * 3);
-    // gesture(400, [randomWidth, device.height / 10 * 9], [randomWidth, device.height / 10])
     gesture(500, [random(300, 600), 1600], [random(300, 600), 200])
 }
 
@@ -186,7 +184,7 @@ commonFunction.registEvent = function () {
     //启用按键监听
     events.observeKey();
     //监听音量上键按下
-    events.onKeyDown("KEYCODE_VOLUME_DOWN", function (event) {
+    events.onKeyDown("volume_up", function (event) {
         toastLog("脚本手动退出");
         exit();
     });
