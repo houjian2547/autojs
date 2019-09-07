@@ -1,19 +1,152 @@
-
 var commonFunction = {};
+var defaultConfig = {
+    articleModuleName: "文章",
+    videoModuleName: "视频",
+    littleVideoModuleName: "短视频",
+    goodsModuleName: "逛逛领金币",
+    moduleNameArray: [],  //模块名称数组
+    scanTimes: 10,     //浏览次数
+    launchAppWaitTime: 10 * 1000   //等待app启动时间
+}
 
-//等待app启动时间
-var waitTime = 10 * 1000;
+/**
+ * 赋值配置
+ * @param {目标配置} targetConfig 
+ */
+commonFunction.assignConfig = function (sourceConfig) {
+    return Object.assign(defaultConfig, sourceConfig);
+}
+
+/**
+ * UI选择一个模块
+ * @param {模块名称数组} moduleNameArray 
+ */
+commonFunction.selectModule = function (joinConfig) {
+    //选择ui
+    let index = dialogs.select("请选择一个模块", joinConfig.moduleNameArray);
+    if (index < 0) {
+        toast("您取消了选择");
+        exit();
+    }
+    toastLog("您选择的是" + joinConfig.moduleNameArray[index]);
+    return index;
+}
+
+/**
+ * 浏览视频-不进入
+ * @param {配置属性：startVideoBtnId} config 
+ */
+commonFunction.scanVideoNotIn = function (config) {
+    if (id(config.startVideoBtnId).findOne() != null) {
+        id(config.startVideoBtnId).find().forEach(function (pos) {
+            let posb = pos.bounds();
+            if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
+                click(posb.centerX(), posb.centerY());
+                toastLog("点击视频播放按钮！");
+                sleep(10000);
+            }
+        });
+    }
+    swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
+}
+
+/**
+ * 浏览视频-进入
+ * @param {配置属性：startVideoBtnId} config 
+ */
+commonFunction.scanVideoIn = function (config) {
+    if (id(config.startVideoBtnId).findOne() != null) {
+        id(config.startVideoBtnId).find().forEach(function (pos) {
+            let posb = pos.bounds();
+            if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
+                click(posb.centerX(), posb.centerY());
+                toastLog("点击视频播放按钮！");
+                sleep(2000);
+                commonFunction.scanSingleArticle(config);
+                sleep(2000);
+            }
+        });
+    }
+    swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
+}
+
+/**
+ * 选择某一篇文章阅读
+ * @param {配置属性： articleId,timerId,scanTimes,mainPageId} config 
+ */
+commonFunction.selectArticleById = function (config) {
+    //判断当页是否存在可以点击的文章
+    if (id(config.articleId).findOne() == null) {
+        toastLog("文章不存在，滑动");
+        swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);
+        return;
+    }
+    id(config.articleId).find().forEach(function (pos) {
+        let posb = pos.bounds();
+        if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
+            click(posb.centerX(), posb.centerY());
+            toastLog("点击了文章，准备进入文章！");
+            sleep(2000);
+            commonFunction.scanSingleArticle(config);
+            sleep(2000);
+        }
+    });
+    swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);
+}
+
+//文章里阅读循环
+commonFunction.scanSingleArticle = function (config) {
+    commonFunction.preHandle();
+    if (id(config.timerId).findOne() != null) {
+        toastLog("金币阅读计时圈存在，开始浏览文章");
+        for (let i = 1; i <= config.scanTimes; i++) {
+            toastLog("浏览文章:" + i + "/" + config.scanTimes);
+            swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);
+            sleep(random(2, 5) * 1000);
+        }
+        toastLog("浏览文章结束");
+    }
+    commonFunction.returnMainPageById(config);
+}
+
+//前置处理
+commonFunction.preHandle = function(){
+    //闪电盒子
+    var unLikeId = "unlike_ll";
+    commonFunction.clickById(unLikeId);
+}
+
+//根据主页标识id退回主页并判断
+commonFunction.returnMainPageById = function (config) {
+    for (let i = 1; i < 4; i++) {
+        toastLog("退回次数:" + i + "/4");
+        back();
+        sleep(1000);
+        if (id(config.mainPageId).exists()) {
+            toastLog("已退回到主页");
+            break;
+        }
+        toastLog("主页不存在");
+    }
+}
+
+//判断是否为主页
+commonFunction.ifMainPageById = function (config) {
+    if (!id(config.mainPageId).exists()) {
+        return false;
+    }
+    return true;
+}
 
 /**
 * 启动app，进入app主页
 * @param appName
-* @param waitTime   等待时间，单位秒
+* @param launchAppWaitTime   等待时间，单位秒
 */
 commonFunction.enterMainPage = function (appName) {
     toastLog("等待" + appName + "启动");
     launchApp(appName);
-    sleep(waitTime);
-    // waitForPackage(getPackageName(appName));
+    sleep(defaultConfig.launchAppWaitTime);
     // commonFunction.clickByText("跳过");
     // commonFunction.clickByText("开启消息推送");
     // commonFunction.clickById("normaldlg_btn_close");
@@ -31,40 +164,29 @@ commonFunction.stopCurrent = function (exectuion) {
     sleep(5000);
 }
 
-//浏览小视频
+//循环滑动小视频
+commonFunction.whileScanVideo = function () {
+    let swipeCount = 1;
+    while (true) {
+        toastLog("滑动次数:" + swipeCount);
+        commonFunction.scanLittlVideo();
+        swipeCount++;
+    }
+}
+
+//单次上滑小视频
 commonFunction.scanLittlVideo = function () {
-    var randomSleepTime = random(5, 10);
+    let randomSleepTime = random(5, 10);
     sleep(randomSleepTime * 1000);
-    toast("观看时间:" + randomSleepTime);
+    // toast("观看时间:" + randomSleepTime);
     gesture(500, [random(300, 600), 1600], [random(300, 600), 200])
 }
 
 
-//根据主页标识id退回主页并判断
-commonFunction.returnMainPageById = function (mainPageId) {
-    for (var i = 1; i < 4; i++) {
-        toastLog("退回次数" + i);
-        back();
-        sleep(2000);
-        if (id(mainPageId).exists()) {
-            toastLog("已退回到主页");
-            return;
-        }
-    }
-}
-
-//判断是否为主页
-commonFunction.ifMainPageById = function (mainPageId) {
-    if (!id(mainPageId).exists()) {
-        return false;
-    }
-    return true;
-}
-
 
 //判断计时器是否存在
 commonFunction.ifTimerExistsById = function (timerId) {
-    var exists_timer = false;
+    let exists_timer = false;
     if (id(timerId).exists()) {
         exists_timer = true;
     }
@@ -75,7 +197,7 @@ commonFunction.ifTimerExistsById = function (timerId) {
 //UI:选择一个app
 commonFunction.selectAppName = function (appNameOptions) {
     //选择ui
-    var indexOption = dialogs.select("请选择一个要运行的app名字", appNameOptions);
+    let indexOption = dialogs.select("请选择一个要运行的app名字", appNameOptions);
     //取消了选择
     if (indexOption < 0) {
         toast("您取消了选择");
@@ -83,6 +205,25 @@ commonFunction.selectAppName = function (appNameOptions) {
     }
     return indexOption;
 }
+
+//对象转换成所有key的数组
+commonFunction.objTransKeyArray = function (obj) {
+    let array = [];
+    for (let index in obj) {
+        array.push(index);
+    }
+    return array;
+}
+
+//对象转换成所有value的数组
+commonFunction.objTransValueArray = function (obj) {
+    let array = [];
+    for (let index in obj) {
+        array.push(obj[index]);
+    }
+    return array;
+}
+
 
 //准备工作
 commonFunction.prepareThings = function () {
@@ -101,8 +242,8 @@ commonFunction.prepareThings = function () {
 
 //屏幕分辨率适配
 commonFunction.setScreenMetrics = function () {
-    var width = device.width;
-    var height = device.height;
+    let width = device.width;
+    let height = device.height;
     log("屏幕宽度" + width + ",屏幕高度：" + height);
     setScreenMetrics(width, height);
 }
@@ -119,7 +260,7 @@ commonFunction.requestScreenCaptureTest = function () {
 * 获取截图
 */
 commonFunction.getCaptureImg = function () {
-    var img0 = captureScreen();
+    let img0 = captureScreen();
     if (img0 == null || typeof (img0) == "undifined") {
         toastLog("截图失败,退出脚本");
         exit();
@@ -135,12 +276,9 @@ commonFunction.getCaptureImg = function () {
 commonFunction.clickByText = function (text) {
     if (textEndsWith(text).exists()) {
         textEndsWith(text).find().forEach(function (pos) {
-            var posb = pos.bounds();
-            // log("posb.centerX():" + posb.centerX() + ",posb.centerY():" + posb.centerY());
-            // if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 0 && posb.centerY() < 1800) {
+            let posb = pos.bounds();
             click(posb.centerX(), posb.centerY());
             toastLog("点击了" + text);
-            // }
         });
     }
 }
@@ -152,12 +290,9 @@ commonFunction.clickByText = function (text) {
 commonFunction.clickById = function (clickId) {
     if (id(clickId).exists()) {
         id(clickId).find().forEach(function (pos) {
-            var posb = pos.bounds();
-            // log("posb.centerX():" + posb.centerX() + ",posb.centerY():" + posb.centerY());
-            // if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 0 && posb.centerY() < 1800) {
+            let posb = pos.bounds();
             click(posb.centerX(), posb.centerY());
             toastLog("点击了" + clickId);
-            // }
         });
     }
 }
@@ -169,10 +304,8 @@ commonFunction.clickById = function (clickId) {
 commonFunction.clickByDesc = function (desc) {
     if (descEndsWith(desc).exists()) {
         descEndsWith(desc).find().forEach(function (pos) {
-            var posb = pos.bounds();
-            // if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 0 && posb.centerY() < 1800) {
+            let posb = pos.bounds();
             click(posb.centerX(), posb.centerY());
-            // }
         });
     }
 }
@@ -206,20 +339,20 @@ commonFunction.wakeUpScreen = function () {
 
 //强制关闭app
 commonFunction.shutdownApp = function (appName) {
-    var packageName = app.getPackageName(appName);
+    let packageName = app.getPackageName(appName);
     app.openAppSetting(packageName);
     sleep(2000);
     // text(app.getAppName(packageName)).waitFor();
-    var is_sure = textMatches(/(.*强.*|.*停.*|.*结.*|.*行.*)/).findOne();
+    let is_sure = textMatches(/(.*强.*|.*停.*|.*结.*|.*行.*)/).findOne();
     if (is_sure.enabled()) {
         textMatches(/(.*强.*|.*停.*|.*结.*|.*行.*|.*确.*|.*定.*)/).findOne().click();
         sleep(2000);
         textMatches(/(.*确.*|.*定.*)/).findOne().click();
-        log(app.getAppName(packageName) + "应用已被关闭");
+        toastLog(app.getAppName(packageName) + "应用已被关闭");
         back();
         home();
     } else {
-        log(app.getAppName(packageName) + "应用不能被正常关闭或不在后台运行");
+        toastLog(app.getAppName(packageName) + "应用不能被正常关闭或不在后台运行");
         back();
         home();
     }

@@ -66,10 +66,8 @@ function selectArticle() {
     id(searchKey).find().forEach(function (pos) {
         var posb = pos.bounds();
         if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
-            // log("该条新闻中心坐标：centerX:" + posb.centerX() + ",centerY:" + posb.centerY());
             click(posb.centerX(), posb.centerY());
             toastLog("点击了文章，准备进入文章！");
-            //开始浏览文章
             sleep(2000);
             scanSingleArticle();
             sleep(2000);
@@ -114,7 +112,6 @@ function scanVideo() {
             id(videoButton).find().forEach(function (pos) {
                 var posb = pos.bounds();
                 if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
-                    // log("该条新闻中心坐标：centerX:" + posb.centerX() + ",centerY:" + posb.centerY());
                     click(posb.centerX(), posb.centerY());
                     toastLog("点击播放按钮！");
                     sleep(2000);
