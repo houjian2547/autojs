@@ -2,28 +2,29 @@ auto();
 var commonFunction = require('modules/commonFunction.js');
 
 var scriptName_appName_obj = {
-    zhifubao: "支付宝",
-    shandianhezi: "闪电盒子",
-    souhuzixun: "搜狐资讯",
-    jukandian: "聚看点",
-    xiangkan: "想看",
-    weili: "微鲤",
-    zhongqingkandian: "中青看点",
-    diandianxinwen: "点点新闻",
-    ertoutiao: "二头条",
-    guangyingxinwen: "光影新闻",
-    zhangshangredian: "掌上热点",
-    wanzhuanxingqiu: "玩赚星球",
-    tutoutiao: "兔头条",
-    shuabaoduanshipin: "刷宝短视频",
-    huoshanjisuban: "火山极速版",
-    kuaishoujisuban: "快手极速版"
+    zhifubao_other: "支付宝",
+    shandianhezi_article: "闪电盒子",
+    souhuzixun_article: "搜狐资讯",
+    jukandian_article: "聚看点",
+    xiangkan_article: "想看",
+    weili_article: "微鲤",
+    zhongqingkandian_article: "中青看点",
+    diandianxinwen_article: "点点新闻",
+    ertoutiao_article: "二头条",
+    guangyingxinwen_article: "光影新闻",
+    wanzhuanxingqiu_article: "玩赚星球",
+    tutoutiao_article: "兔头条",
+    zhangshangredian_articleAndLittleVideo: "掌上热点",
+    shuabaoduanshipin_littleVideo: "刷宝短视频",
+    huoshanjisuban_littleVideo: "火山极速版",
+    kuaishoujisuban_littleVideo: "快手极速版"
 };
 
 var scriptNameArray = commonFunction.objTransKeyArray(scriptName_appName_obj);
 var appZHNameArray = commonFunction.objTransValueArray(scriptName_appName_obj);
-var littleVideoAppNameArray = [scriptName_appName_obj.shuabaoduanshipin, scriptName_appName_obj.appName_huoshanjisuban,
-scriptName_appName_obj.appName_kuaishoujisuban];
+var littleVideoAppNameArray = [scriptName_appName_obj.shuabaoduanshipin_littleVideo,
+                                scriptName_appName_obj.huoshanjisuban_littleVideo,
+                                scriptName_appName_obj.kuaishoujisuban_littleVideo];
 
 //==============================程序启动区=======================================
 mainEntrence();
@@ -33,7 +34,8 @@ function mainEntrence() {
     let indexOption = commonFunction.selectAppName(appZHNameArray);
     commonFunction.enterMainPage(appZHNameArray[indexOption]);
     let scriptName = scriptNameArray[indexOption];
-    let exectuion = engines.execScriptFile("/sdcard/脚本/modules/" + scriptName + ".js");
+    //选择运行的脚本
+    var exectuion = commonFunction.selectScript(scriptName);
     //判断是否8点前，如果是，停止刷当前的，开始顺序刷小视频
     stopCurrentScript(exectuion);
     //顺序刷小视频
@@ -70,7 +72,7 @@ function scanLittlVideos() {
 //执行脚本
 function exec(appName, seconds) {
     let startDate = new Date();//开始时间
-    let exectuion = engines.execScriptFile("/sdcard/脚本/modules/xiaoshipin.js");
+    let exectuion = engines.execScriptFile("/sdcard/脚本/modules/littleVideo/xiaoshipin.js");
     //计时器，检测时间
     let isIExec = true;
     while (isIExec) {

@@ -33,6 +33,15 @@ commonFunction.selectModule = function (joinConfig) {
 }
 
 /**
+ * 通过脚本名称后缀选择路径
+ * @param {脚本名称} scriptName 
+ */
+commonFunction.selectScript = function (scriptName) {
+    var spitArray = scriptName.split("_");
+    return engines.execScriptFile("/sdcard/脚本/modules/" + spitArray[1] + "/" + spitArray[0] + ".js");
+}
+
+/**
  * 浏览视频-不进入
  * @param {配置属性：startVideoBtnId} config 
  */
@@ -135,7 +144,7 @@ commonFunction.preHandle = function () {
     // commonFunction.clickById("x2");//首页领取金币按钮
     commonFunction.clickById("kn");//首页广告，关闭按钮
     //玩赚星球
-    var pageAdCloseId = "iv_delete";//首页广告关闭id
+    let pageAdCloseId = "iv_delete";//首页广告关闭id
     commonFunction.clickById(pageAdCloseId);
 
 }
@@ -262,6 +271,10 @@ commonFunction.prepareThings = function () {
     //屏幕分辨率适配
     commonFunction.setScreenMetrics();
     commonFunction.requestScreenCaptureTest();
+    String.prototype.endWith = function (endStr) {
+        var d = this.length - endStr.length;
+        return (d >= 0 && this.lastIndexOf(endStr) == d);
+    }
     log(">>>>>>>>>>>>>>>>>>>>>准备工作结束<<<<<<<<<<<<<<<<<<<<<<");
 }
 
