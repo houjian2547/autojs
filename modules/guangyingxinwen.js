@@ -12,7 +12,6 @@ function startSelect() {
     let joinConfig = commonFunction.assignConfig(config);
     joinConfig.moduleNameArray = [joinConfig.articleModuleName, joinConfig.videoModuleName];
     let moduleIndex = commonFunction.selectModule(joinConfig);
-    closeAd();
     if (joinConfig.moduleNameArray[moduleIndex] == joinConfig.articleModuleName) {
         while (true) {
             commonFunction.selectArticleById(joinConfig);
@@ -24,6 +23,3 @@ function startSelect() {
     }
 }
 
-function closeAd() {
-    
-}

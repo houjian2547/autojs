@@ -11,9 +11,6 @@ var config = {
 startSelect();
 function startSelect() {
     let joinConfig = commonFunction.assignConfig(config);
-    for (let key in joinConfig) {
-        log(key + ":" + joinConfig[key]);
-    }
     joinConfig.moduleNameArray = [joinConfig.articleModuleName, joinConfig.videoModuleName];
     let moduleIndex = commonFunction.selectModule(joinConfig);
     if (joinConfig.moduleNameArray[moduleIndex] == joinConfig.articleModuleName) {

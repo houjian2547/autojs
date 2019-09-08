@@ -23,7 +23,7 @@ var scriptName_appName_obj = {
 var scriptNameArray = commonFunction.objTransKeyArray(scriptName_appName_obj);
 var appZHNameArray = commonFunction.objTransValueArray(scriptName_appName_obj);
 var littleVideoAppNameArray = [scriptName_appName_obj.shuabaoduanshipin, scriptName_appName_obj.appName_huoshanjisuban,
-                                scriptName_appName_obj.appName_kuaishoujisuban];
+scriptName_appName_obj.appName_kuaishoujisuban];
 
 //==============================程序启动区=======================================
 mainEntrence();
@@ -34,9 +34,15 @@ function mainEntrence() {
     commonFunction.enterMainPage(appZHNameArray[indexOption]);
     let scriptName = scriptNameArray[indexOption];
     let exectuion = engines.execScriptFile("/sdcard/脚本/modules/" + scriptName + ".js");
+    //判断是否8点前，如果是，停止刷当前的，开始顺序刷小视频
+    stopCurrentScript(exectuion);
+    //顺序刷小视频
+    scanLittlVideos();
 
-    stopScript();
-    //8点以前顺序刷小视频
+}
+
+//8点以前停止当前脚本
+function stopCurrentScript(exectuion) {
     let isIExec = true;
     while (isIExec) {
         if (new Date().getHours() < 8) {
@@ -45,12 +51,8 @@ function mainEntrence() {
         sleep(60 * 1000);//每一分钟检测一次
     }
     //停止脚本
-    toastLog(appZHNameArray[indexOption] + "执行停止");
+    toastLog("停止当前脚本");
     commonFunction.stopCurrent(exectuion);
-
-    //顺序刷小视频
-    scanLittlVideos();
-
 }
 
 
