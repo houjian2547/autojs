@@ -3,7 +3,8 @@ var config = {
     appName: "闪电盒子",
     articleId: "image3",
     timerId: "back",        //文章来源id = title  新闻标题news-title  来源id = src-data-new  发布时间id = news-pubtime
-    mainPageId: "bottom_container"
+    mainPageId: "bottom_container",
+    scanTimes: 8
 }
 
 startSelect();
@@ -30,11 +31,10 @@ function startSelect() {
 function scanGoods(joinConfig) {
     joinConfig.articleId = "rmb_price";
     joinConfig.timerId = "unlike_ll";
-    joinConfig.scanTimes = 6;
     //划过直播区
     while (true) {
-        var liveZoneFlag = "直播中";
-        var LiveZoneEndFlag = "更多热门直播";
+        let liveZoneFlag = "直播中";
+        let LiveZoneEndFlag = "更多热门直播";
         if (textEndsWith(LiveZoneEndFlag).exists() || id(joinConfig.articleId).exists()) {
             toastLog("已经出直播区");
             swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑

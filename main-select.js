@@ -17,14 +17,13 @@ var scriptName_appName_obj = {
     tutoutiao: "兔头条",
     shuabaoduanshipin: "刷宝短视频",
     huoshanjisuban: "火山极速版",
-    kuaishoujisuban: "快手极速版",
-    quanminxiaoshipin: "全民小视频"
+    kuaishoujisuban: "快手极速版"
 };
 
 var scriptNameArray = commonFunction.objTransKeyArray(scriptName_appName_obj);
 var appZHNameArray = commonFunction.objTransValueArray(scriptName_appName_obj);
 var littleVideoAppNameArray = [scriptName_appName_obj.shuabaoduanshipin, scriptName_appName_obj.appName_huoshanjisuban,
-                                scriptName_appName_obj.appName_kuaishoujisuban, scriptName_appName_obj.appName_quanminxiaoshipin];
+                                scriptName_appName_obj.appName_kuaishoujisuban];
 
 //==============================程序启动区=======================================
 mainEntrence();

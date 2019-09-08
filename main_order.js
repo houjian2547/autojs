@@ -5,8 +5,7 @@ var commonFunction = require('modules/commonFunction.js');
 var appName_shuabaoduanshipin = "刷宝短视频";
 var appName_huoshanjisuban = "火山极速版";
 var appName_kuaishoujisuban = "快手极速版";
-var appName_quanminxiaoshipin = "全民小视频";
-var littleVideoAppNameArray = [appName_shuabaoduanshipin, appName_huoshanjisuban, appName_kuaishoujisuban, appName_quanminxiaoshipin];
+var littleVideoAppNameArray = [appName_shuabaoduanshipin, appName_huoshanjisuban, appName_kuaishoujisuban];
 
 //新闻类的列表
 // var newsList = ["weili", "xiangkan"];
