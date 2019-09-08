@@ -1,10 +1,10 @@
 var commonFunction = require('modules/commonFunction.js');
 var config = {
     appName: "闪电盒子",
-    articleId: "image3",
+    articleId: "from_text",
     timerId: "back",        //文章来源id = title  新闻标题news-title  来源id = src-data-new  发布时间id = news-pubtime
     mainPageId: "bottom_container",
-    scanTimes: 8
+    scanTimes: 6
 }
 
 startSelect();
@@ -44,7 +44,9 @@ function scanGoods(joinConfig) {
             swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
         }
     }
-    commonFunction.selectArticleById(joinConfig);
+    while (true) {
+        commonFunction.selectArticleById(joinConfig);
+    }
 }
 
 function closeAd() {

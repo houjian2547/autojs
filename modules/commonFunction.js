@@ -93,12 +93,14 @@ commonFunction.selectArticleById = function (config) {
     }
     id(config.articleId).find().forEach(function (pos) {
         let posb = pos.bounds();
-        if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
-            click(posb.centerX(), posb.centerY());
-            toastLog("点击了文章，准备进入文章！");
-            sleep(2000);
-            commonFunction.scanSingleArticle(config);
-            sleep(2000);
+        if (pos.text().search("广告") == -1) {
+            if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
+                click(posb.centerX(), posb.centerY());
+                toastLog("点击了文章，准备进入文章！");
+                sleep(2000);
+                commonFunction.scanSingleArticle(config);
+                sleep(2000);
+            }
         }
     });
     swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);
@@ -121,6 +123,7 @@ commonFunction.scanSingleArticle = function (config) {
 
 //文章内前置处理
 commonFunction.preHandle = function () {
+    commonFunction.clickByText("拒绝");
     //闪电盒子
     let unLikeId = "unlike_ll";//不喜欢 按钮
     commonFunction.clickById(unLikeId);
