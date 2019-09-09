@@ -14,12 +14,24 @@ function startSelect() {
     let moduleIndex = commonFunction.selectModule(joinConfig);
     if (joinConfig.moduleNameArray[moduleIndex] == joinConfig.articleModuleName) {
         while (true) {
+            closeAd();
             commonFunction.selectArticleById(joinConfig);
         }
     } else if (joinConfig.moduleNameArray[moduleIndex] == joinConfig.videoModuleName) {
         while (true) {
+            closeAd();
             commonFunction.scanVideoIn(joinConfig);
         }
     }
 }
 
+
+function closeAd(){
+    //微鲤
+    let readAwardId = "text_open";
+    let readTimeNoticeId = "text_ok";
+    let readTimeBtnId = "bt_ok";
+    commonFunction.clickById(readAwardId);
+    commonFunction.clickById(readTimeNoticeId);
+    commonFunction.clickById(readTimeBtnId);
+}
