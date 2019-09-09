@@ -23,8 +23,8 @@ var scriptName_appName_obj = {
 var scriptNameArray = commonFunction.objTransKeyArray(scriptName_appName_obj);
 var appZHNameArray = commonFunction.objTransValueArray(scriptName_appName_obj);
 var littleVideoAppNameArray = [scriptName_appName_obj.shuabaoduanshipin_littleVideo,
-                                scriptName_appName_obj.huoshanjisuban_littleVideo,
-                                scriptName_appName_obj.kuaishoujisuban_littleVideo];
+scriptName_appName_obj.huoshanjisuban_littleVideo,
+scriptName_appName_obj.kuaishoujisuban_littleVideo];
 
 //==============================程序启动区=======================================
 mainEntrence();
@@ -36,7 +36,7 @@ function mainEntrence() {
     let scriptName = scriptNameArray[indexOption];
     //选择运行的脚本
     var exectuion = commonFunction.selectScript(scriptName);
-    //判断是否8点前，如果是，停止刷当前的，开始顺序刷小视频
+    //判断是否7点前，如果是，停止刷当前的，开始顺序刷小视频
     stopCurrentScript(exectuion);
     //顺序刷小视频
     scanLittlVideos();
@@ -47,7 +47,7 @@ function mainEntrence() {
 function stopCurrentScript(exectuion) {
     let isIExec = true;
     while (isIExec) {
-        if (new Date().getHours() < 8) {
+        if (new Date().getHours() < 7) {
             isIExec = false;
         }
         sleep(60 * 1000);//每一分钟检测一次
@@ -78,7 +78,7 @@ function exec(appName, seconds) {
     while (isIExec) {
         //计时
         let runSeconds = ((new Date().getTime()) - startDate.getTime()) / 1000;
-        toastLog(appName + "已执行" + runSeconds + "秒");
+        toastLog(appName + "已执行" + runSeconds / 60 + "分钟");
         if (runSeconds > seconds) {
             isIExec = false;
         }

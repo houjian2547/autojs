@@ -10,6 +10,22 @@ var defaultConfig = {
 }
 
 /**
+ * 计时器
+ * @param {计时的秒数} seconds 
+ */
+commonFunction.countTimeAndToast = function (seconds) {
+    let countTime = 1;
+    while (true) {
+        sleep(1 * 1000);
+        toastLog(seconds + "秒倒计时：" + countTime + "秒");
+        countTime++;
+        if (countTime == (seconds + 1)) {
+            break;
+        }
+    }
+}
+
+/**
  * 赋值配置
  * @param {目标配置} targetConfig 
  */
@@ -175,7 +191,8 @@ commonFunction.ifMainPageById = function (config) {
 commonFunction.enterMainPage = function (appName) {
     toastLog("等待" + appName + "启动");
     launchApp(appName);
-    sleep(defaultConfig.launchAppWaitTime);
+    commonFunction.countTimeAndToast(defaultConfig.launchAppWaitTime / 1000);
+    // sleep(defaultConfig.launchAppWaitTime);
     // commonFunction.clickByText("跳过");
     // commonFunction.clickByText("开启消息推送");
     // commonFunction.clickById("normaldlg_btn_close");
