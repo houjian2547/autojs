@@ -62,14 +62,28 @@ commonFunction.selectScript = function (scriptName) {
  * @param {配置属性：startVideoBtnId} config 
  */
 commonFunction.scanVideoNotIn = function (config) {
-    if (id(config.startVideoBtnId).findOne(500) != null) {
+    if (config.startVideoBtnId != null && id(config.startVideoBtnId).findOne(500) != null) {
         id(config.startVideoBtnId).find().forEach(function (pos) {
             let posb = pos.bounds();
             if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
                 click(posb.centerX(), posb.centerY());
                 toastLog("点击视频播放按钮！");
-                sleep(10000);
+                commonFunction.countTimeAndToast(config.scanTimes);
             }
+        });
+    }
+    if (config.startVideoBtnDesc != null && desc(config.startVideoBtnDesc).findOne(500) != null) {
+        desc(config.startVideoBtnDesc).find().forEach(function (pos) {
+            let posb = pos.bounds();
+            if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
+                click(posb.centerX(), posb.centerY());
+                toastLog("点击视频播放按钮！");
+                if (!commonFunction.ifMainPage(config)) {
+                    commonFunction.returnMainPage(config);
+                }
+                commonFunction.countTimeAndToast(config.scanTimes);
+            }
+
         });
     }
     swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
@@ -96,45 +110,69 @@ commonFunction.scanVideoIn = function (config) {
 }
 
 /**
- * 选择某一篇文章阅读
+ * 根据id选择某一篇文章阅读
  * @param {配置属性： articleId,timerId,scanTimes,mainPageId} config 
  */
 commonFunction.selectArticleById = function (config) {
     commonFunction.preHandle();
-    //判断当页是否存在可以点击的文章
-    if (id(config.articleId).findOne(500) == null) {
-        toastLog("文章不存在，滑动");
-        swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);
-        return;
-    }
-    id(config.articleId).find().forEach(function (pos) {
-        let posb = pos.bounds();
-        if (pos.text().search("(广告)") == -1) {
-            if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
-                click(posb.centerX(), posb.centerY());
-                toastLog("点击了文章，准备进入文章！");
-                sleep(2000);
-                commonFunction.scanSingleArticle(config);
-                sleep(2000);
-            }
+    if (config.articleId != null) {
+        if (id(config.articleId).findOne(500) == null) {
+            toastLog("文章不存在，滑动");
+            swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);
+            return;
         }
-    });
-    swipe(device.width / 2, device.height / 6 * 5, device.width / 2, device.height / 6, 2000);
+        id(config.articleId).find().forEach(function (pos) {
+            let posb = pos.bounds();
+            if (pos.text().search("(广告)") == -1) {
+                if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
+                    click(posb.centerX(), posb.centerY());
+                    toastLog("点击了文章，准备进入文章！");
+                    sleep(2000);
+                    commonFunction.scanSingleArticle(config);
+                    sleep(2000);
+                }
+            }
+        });
+        swipe(device.width / 2, device.height / 6 * 5, device.width / 2, device.height / 6, 500);
+    }
+    if (config.articleId == null) {
+        click(device.width / 2, device.height / 2);
+        toastLog("点击了文章，准备进入文章！");
+        sleep(2000);
+        commonFunction.scanSingleArticle(config);
+        sleep(2000);
+        swipe(device.width / 2, device.height / 3 * 2, device.width / 2, device.height / 3, 500);
+    }
+
 }
 
 //文章里阅读循环
 commonFunction.scanSingleArticle = function (config) {
-    if (id(config.timerId).findOne(500) != null) {
-        toastLog("金币阅读计时圈存在，开始浏览文章");
-        for (let i = 1; i <= config.scanTimes; i++) {
-            commonFunction.preHandle();
-            toastLog("浏览文章:" + i + "/" + config.scanTimes);
-            swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);
-            sleep(random(2, 5) * 1000);
+    if (config.timerId != null) {
+        if (id(config.timerId).findOne(500) != null) {
+            toastLog("金币阅读计时圈存在，开始浏览文章");
+            for (let i = 1; i <= config.scanTimes; i++) {
+                commonFunction.preHandle();
+                toastLog("浏览文章:" + i + "/" + config.scanTimes);
+                swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);
+                sleep(random(2, 5) * 1000);
+            }
+            toastLog("浏览文章结束");
         }
-        toastLog("浏览文章结束");
     }
-    commonFunction.returnMainPageById(config);
+    if (config.timerText != null) {
+        if (textEndsWith(config.timerText).findOne(500) != null) {
+            toastLog("金币阅读计时圈存在，开始浏览文章");
+            for (let i = 1; i <= config.scanTimes; i++) {
+                commonFunction.preHandle();
+                toastLog("浏览文章:" + i + "/" + config.scanTimes);
+                swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);
+                sleep(random(2, 5) * 1000);
+            }
+            toastLog("浏览文章结束");
+        }
+    }
+    commonFunction.returnMainPage(config);
 }
 
 //文章内前置处理
@@ -162,22 +200,33 @@ commonFunction.preHandle = function () {
 
 
 //根据主页标识id退回主页并判断
-commonFunction.returnMainPageById = function (config) {
+commonFunction.returnMainPage = function (config) {
     for (let i = 1; i < 4; i++) {
         toastLog("退回次数:" + i + "/4");
         back();
         sleep(1000);
-        if (id(config.mainPageId).exists()) {
-            toastLog("已退回到主页");
-            break;
+        if (config.mainPageId != null) {
+            if (id(config.mainPageId).exists()) {
+                toastLog("已退回到主页");
+                break;
+            }
+        }
+        if (config.mainPageText != null) {
+            if (textEndsWith(config.mainPageText).exists()) {
+                toastLog("已退回到主页");
+                break;
+            }
         }
         toastLog("主页不存在");
     }
 }
 
 //判断是否为主页
-commonFunction.ifMainPageById = function (config) {
-    if (!id(config.mainPageId).exists()) {
+commonFunction.ifMainPage = function (config) {
+    if (config.mainPageId != null && !id(config.mainPageId).exists()) {
+        return false;
+    }
+    if (config.mainPageText != null && !textEndsWith(config.mainPageText).exists()) {
         return false;
     }
     return true;

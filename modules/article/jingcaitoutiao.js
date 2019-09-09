@@ -1,10 +1,9 @@
 var commonFunction = require('modules/commonFunction.js');
 var config = {
-    appName: "微鲤",
-    articleId: "tv_chat_room_tag",
-    startVideoBtnId: "tv_count",
-    timerId: "iv_coin",
-    mainPageId: "iv_tab_1",
+    appName: "精彩头条",
+    startVideoBtnDesc: "video_play_btn",
+    timerText:"我来说两句",
+    mainPageText: "搜索感兴趣的内容",
     scanTimes: 6
 }
 
@@ -15,24 +14,13 @@ function startSelect() {
     let moduleIndex = commonFunction.selectModule(joinConfig);
     if (joinConfig.moduleNameArray[moduleIndex] == joinConfig.articleModuleName) {
         while (true) {
-            closeAd();
             commonFunction.selectArticleById(joinConfig);
         }
     } else if (joinConfig.moduleNameArray[moduleIndex] == joinConfig.videoModuleName) {
         while (true) {
-            closeAd();
-            commonFunction.scanVideoIn(joinConfig);
+            commonFunction.scanVideoNotIn(joinConfig);
         }
     }
 }
 
 
-function closeAd(){
-    //微鲤
-    let readAwardId = "text_open";
-    let readTimeNoticeId = "text_ok";
-    let readTimeBtnId = "bt_ok";
-    commonFunction.clickById(readAwardId);
-    commonFunction.clickById(readTimeNoticeId);
-    commonFunction.clickById(readTimeBtnId);
-}
