@@ -214,6 +214,7 @@ commonFunction.stopCurrent = function (exectuion) {
 commonFunction.whileScanVideo = function () {
     let swipeCount = 1;
     while (true) {
+        commonFunction.clickByText("继续观看"); //闪电盒子
         toastLog("滑动次数:" + swipeCount);
         commonFunction.scanLittlVideo();
         swipeCount++;
