@@ -377,8 +377,12 @@ commonFunction.clickByText = function (text) {
     if (textEndsWith(text).exists()) {
         textEndsWith(text).find().forEach(function (pos) {
             let posb = pos.bounds();
-            click(posb.centerX(), posb.centerY());
-            toastLog("点击了" + text);
+            if (posb.centerX() > 0 && posb.centerY() > 0) {
+                click(posb.centerX(), posb.centerY());
+                toastLog("点击了" + text);
+            }else{
+                toastLog("坐标为负，点击失败");
+            }
         });
     }
 }
@@ -391,8 +395,12 @@ commonFunction.clickById = function (clickId) {
     if (id(clickId).exists()) {
         id(clickId).find().forEach(function (pos) {
             let posb = pos.bounds();
-            click(posb.centerX(), posb.centerY());
-            toastLog("点击了" + clickId);
+            if (posb.centerX() > 0 && posb.centerY() > 0) {
+                click(posb.centerX(), posb.centerY());
+                toastLog("点击了" + clickId);
+            }else{
+                toastLog("坐标为负，点击失败");
+            }
         });
     }
 }
@@ -405,7 +413,12 @@ commonFunction.clickByDesc = function (desc) {
     if (descEndsWith(desc).exists()) {
         descEndsWith(desc).find().forEach(function (pos) {
             let posb = pos.bounds();
-            click(posb.centerX(), posb.centerY());
+            if (posb.centerX() > 0 && posb.centerY() > 0) {
+                click(posb.centerX(), posb.centerY());
+                toastLog("点击了" + clickId);
+            }else{
+                toastLog("坐标为负，点击失败");
+            }
         });
     }
 }

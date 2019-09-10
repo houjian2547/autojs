@@ -15,6 +15,7 @@ var scriptName_appName_obj = {
     wanzhuanxingqiu_article: "玩赚星球",
     tutoutiao_article: "兔头条",
     zhangshangredian_articleAndLittleVideo: "掌上热点",
+    jingcaitoutiao_article: "精彩头条",
     shuabaoduanshipin_littleVideo: "刷宝短视频",
     huoshanjisuban_littleVideo: "火山极速版",
     kuaishoujisuban_littleVideo: "快手极速版"
