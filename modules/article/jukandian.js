@@ -33,9 +33,10 @@ function startSelect() {
     let joinConfig = commonFunction.assignConfig(config);
     joinConfig.moduleNameArray = [joinConfig.articleModuleName, joinConfig.videoModuleName];
     let moduleIndex = commonFunction.selectModule(joinConfig);
-    closeAd();
+    preHandle_app();
     if (joinConfig.moduleNameArray[moduleIndex] == joinConfig.articleModuleName) {
         while (true) {
+            preHandle_article();
             commonFunction.selectArticleById(joinConfig);
         }
     } else if (joinConfig.moduleNameArray[moduleIndex] == joinConfig.videoModuleName) {
@@ -45,13 +46,14 @@ function startSelect() {
     }
 }
 
-function closeAd() {
+function preHandle_app() {
     //启动首页的广告关闭按钮
-    var signCloseBtnId = "v2_sign_close_button";
-    var adCloseBtnId = "image_user_task_pop_close";
-    commonFunction.clickById(signCloseBtnId);
-    commonFunction.clickById(adCloseBtnId);
+    sleep(500);
+    commonFunction.clickById("v2_sign_close_button");
+    commonFunction.clickById("image_user_task_pop_close");
+}
 
+function preHandle_article() {
     commonFunction.clickByText("领金币");
     commonFunction.clickByText("继续阅读");
     commonFunction.clickByText("继续赚钱");

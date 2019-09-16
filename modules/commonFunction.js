@@ -94,19 +94,36 @@ commonFunction.scanVideoNotIn = function (config) {
  * @param {配置属性：startVideoBtnId} config 
  */
 commonFunction.scanVideoIn = function (config) {
-    if (id(config.startVideoBtnId).findOne(500) != null) {
-        id(config.startVideoBtnId).find().forEach(function (pos) {
-            let posb = pos.bounds();
-            if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
-                click(posb.centerX(), posb.centerY());
-                toastLog("点击视频播放按钮！");
-                sleep(2000);
-                commonFunction.scanSingleArticle(config);
-                sleep(2000);
-            }
-        });
+    if(config.startVideoBtnId != null){
+        if (id(config.startVideoBtnId).findOne(500) != null) {
+            id(config.startVideoBtnId).find().forEach(function (pos) {
+                let posb = pos.bounds();
+                if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
+                    click(posb.centerX(), posb.centerY());
+                    toastLog("点击视频播放按钮！");
+                    sleep(2000);
+                    commonFunction.scanSingleArticle(config);
+                    sleep(2000);
+                }
+            });
+        }
+        swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
     }
-    swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
+    if(config.startVideoBtnText != null){
+        if (textEndsWith(config.startVideoBtnText).findOne(500) != null) {
+            textEndsWith(config.startVideoBtnText).find().forEach(function (pos) {
+                let posb = pos.bounds();
+                if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
+                    click(posb.centerX(), posb.centerY());
+                    toastLog("点击视频播放按钮！");
+                    sleep(2000);
+                    commonFunction.scanSingleArticle(config);
+                    sleep(2000);
+                }
+            });
+        }
+        swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
+    }
 }
 
 /**
@@ -135,7 +152,25 @@ commonFunction.selectArticleById = function (config) {
         });
         swipe(device.width / 2, device.height / 6 * 5, device.width / 2, device.height / 6, 500);
     }
-    if (config.articleId == null) {
+    if (config.articleText != null) {
+        if (textEndsWith(config.articleText).findOne(500) == null) {
+            toastLog("文章不存在，滑动");
+            swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);
+            return;
+        }
+        textEndsWith(config.articleText).find().forEach(function (pos) {
+            let posb = pos.bounds();
+            if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
+                click(posb.centerX(), posb.centerY());
+                toastLog("点击了文章，准备进入文章！");
+                sleep(2000);
+                commonFunction.scanSingleArticle(config);
+                sleep(2000);
+            }
+        });
+        swipe(device.width / 2, device.height / 6 * 5, device.width / 2, device.height / 6, 500);
+    }
+    if (config.articleId == null && config.articleText == null) {
         click(device.width / 2, device.height / 2);
         toastLog("点击了文章，准备进入文章！");
         sleep(2000);
@@ -161,7 +196,7 @@ commonFunction.scanSingleArticle = function (config) {
         }
     }
     if (config.timerText != null) {
-        if (textEndsWith(config.timerText).findOne(500) != null) {
+        if (textContains(config.timerText).findOne(500) != null) {
             toastLog("金币阅读计时圈存在，开始浏览文章");
             for (let i = 1; i <= config.scanTimes; i++) {
                 commonFunction.preHandle();
@@ -180,22 +215,6 @@ commonFunction.preHandle = function () {
     commonFunction.clickByText("拒绝");
     //闪电盒子
     commonFunction.clickById("unlike_ll");//不喜欢 按钮
-    //想看
-    let fudai_btn_id = "rec_task_btn";//首页领金币按钮
-    let fudai_btn_text = "领金币";//首页领金币按钮
-    let more_minute_btn_id = "more_minute_btn";//更多时间提醒
-    let fudai_icon_id = "fudai_icon";//福袋icon id
-    commonFunction.clickByText(fudai_btn_text);
-    commonFunction.clickById(more_minute_btn_id);
-    commonFunction.clickById(fudai_icon_id);
-    commonFunction.clickById(fudai_btn_id);
-    //中青看点
-    // commonFunction.clickById("x2");//首页领取金币按钮
-    commonFunction.clickById("kn");//首页广告，关闭按钮
-    //玩赚星球
-    commonFunction.clickById("iv_delete");
-    commonFunction.clickById("iv_do_more_task_btn");
-
 }
 
 
@@ -380,7 +399,7 @@ commonFunction.clickByText = function (text) {
             if (posb.centerX() > 0 && posb.centerY() > 0) {
                 click(posb.centerX(), posb.centerY());
                 toastLog("点击了" + text);
-            }else{
+            } else {
                 toastLog("坐标为负，点击失败");
             }
         });
@@ -395,10 +414,10 @@ commonFunction.clickById = function (clickId) {
     if (id(clickId).exists()) {
         id(clickId).find().forEach(function (pos) {
             let posb = pos.bounds();
-            if (posb.centerX() > 0 && posb.centerY() > 0) {
+            if (posb.centerX() > 0 && posb.centerX() < device.width && posb.centerY() > 0 && posb.centerY() < device.height) {
                 click(posb.centerX(), posb.centerY());
                 toastLog("点击了" + clickId);
-            }else{
+            } else {
                 toastLog("坐标为负，点击失败");
             }
         });
@@ -416,7 +435,7 @@ commonFunction.clickByDesc = function (desc) {
             if (posb.centerX() > 0 && posb.centerY() > 0) {
                 click(posb.centerX(), posb.centerY());
                 toastLog("点击了" + clickId);
-            }else{
+            } else {
                 toastLog("坐标为负，点击失败");
             }
         });

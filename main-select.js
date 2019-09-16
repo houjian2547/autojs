@@ -23,8 +23,8 @@ var scriptName_appName_obj = {
 
 var scriptNameArray = commonFunction.objTransKeyArray(scriptName_appName_obj);
 var appZHNameArray = commonFunction.objTransValueArray(scriptName_appName_obj);
-var littleVideoAppNameArray = [scriptName_appName_obj.shuabaoduanshipin_littleVideo,
-scriptName_appName_obj.huoshanjisuban_littleVideo,
+var littleVideoAppNameArray = [scriptName_appName_obj.huoshanjisuban_littleVideo,
+scriptName_appName_obj.shuabaoduanshipin_littleVideo,
 scriptName_appName_obj.kuaishoujisuban_littleVideo];
 
 //==============================程序启动区=======================================
@@ -48,7 +48,7 @@ function mainEntrence() {
 function stopCurrentScript(exectuion) {
     let isIExec = true;
     while (isIExec) {
-        if (new Date().getHours() <= 7 || new Date().getHours() >= 22) {
+        if (new Date().getHours() < 7 || new Date().getHours() > 23) {
             isIExec = false;
         }
         sleep(60 * 1000);//每一分钟检测一次
@@ -61,9 +61,14 @@ function stopCurrentScript(exectuion) {
 
 //顺序刷小视频
 function scanLittlVideos() {
-    let normalRumTime = 20 * 60;  //每次阅读的时间(20分钟)
+    let normalRumTime;
     while (true) {
         for (let i = 0; i < littleVideoAppNameArray.length; i++) {
+            if (i == 0) {
+                normalRumTime = 10 * 60; //火山极速版  10分钟
+            } else {
+                normalRumTime = 30 * 60; //刷宝短视频，快手极速版
+            }
             commonFunction.enterMainPage(littleVideoAppNameArray[i]);
             exec(littleVideoAppNameArray[i], normalRumTime);
         }
