@@ -103,7 +103,7 @@ commonFunction.scanVideoIn = function (config) {
                     toastLog("点击视频播放按钮！");
                     sleep(2000);
                     commonFunction.scanSingleArticle(config);
-                    sleep(2000);
+                    sleep(1000);
                 }
             });
         }
@@ -118,7 +118,7 @@ commonFunction.scanVideoIn = function (config) {
                     toastLog("点击视频播放按钮！");
                     sleep(2000);
                     commonFunction.scanSingleArticle(config);
-                    sleep(2000);
+                    sleep(1000);
                 }
             });
         }
@@ -146,7 +146,7 @@ commonFunction.selectArticleById = function (config) {
                     toastLog("点击了文章，准备进入文章！");
                     sleep(2000);
                     commonFunction.scanSingleArticle(config);
-                    sleep(2000);
+                    sleep(1000);
                 }
             }
         });
@@ -165,7 +165,7 @@ commonFunction.selectArticleById = function (config) {
                 toastLog("点击了文章，准备进入文章！");
                 sleep(2000);
                 commonFunction.scanSingleArticle(config);
-                sleep(2000);
+                sleep(1000);
             }
         });
         swipe(device.width / 2, device.height / 6 * 5, device.width / 2, device.height / 6, 500);
@@ -175,7 +175,7 @@ commonFunction.selectArticleById = function (config) {
         toastLog("点击了文章，准备进入文章！");
         sleep(2000);
         commonFunction.scanSingleArticle(config);
-        sleep(2000);
+        sleep(1000);
         swipe(device.width / 2, device.height / 3 * 2, device.width / 2, device.height / 3, 500);
     }
 
