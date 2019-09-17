@@ -1,9 +1,10 @@
 var commonFunction = require('modules/commonFunction.js');
 var config = {
-    appName: "掌上热点",
-    articleId: "tv_date",
-    timerId: "iv_red_package",
-    mainPageId: "ll_search"
+    appName: "小鸟看看",
+    articleText: "今天",
+    timerText: "来说两句吧",
+    mainPageText: "推荐",
+    scanTimes: 7
 }
 
 startSelect();

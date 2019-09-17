@@ -110,8 +110,8 @@ commonFunction.scanVideoIn = function (config) {
         swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
     }
     if(config.startVideoBtnText != null){
-        if (textEndsWith(config.startVideoBtnText).findOne(500) != null) {
-            textEndsWith(config.startVideoBtnText).find().forEach(function (pos) {
+        if (textContains(config.startVideoBtnText).findOne(500) != null) {
+            textContains(config.startVideoBtnText).find().forEach(function (pos) {
                 let posb = pos.bounds();
                 if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
                     click(posb.centerX(), posb.centerY());
@@ -153,12 +153,12 @@ commonFunction.selectArticleById = function (config) {
         swipe(device.width / 2, device.height / 6 * 5, device.width / 2, device.height / 6, 500);
     }
     if (config.articleText != null) {
-        if (textEndsWith(config.articleText).findOne(500) == null) {
+        if (textContains(config.articleText).findOne(500) == null) {
             toastLog("文章不存在，滑动");
             swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);
             return;
         }
-        textEndsWith(config.articleText).find().forEach(function (pos) {
+        textContains(config.articleText).find().forEach(function (pos) {
             let posb = pos.bounds();
             if (posb.centerX() > 0 && posb.centerX() < 1000 && posb.centerY() > 400 && posb.centerY() < 1800) {
                 click(posb.centerX(), posb.centerY());
@@ -231,7 +231,7 @@ commonFunction.returnMainPage = function (config) {
             }
         }
         if (config.mainPageText != null) {
-            if (textEndsWith(config.mainPageText).exists()) {
+            if (textContains(config.mainPageText).exists()) {
                 toastLog("已退回到主页");
                 break;
             }
@@ -245,7 +245,7 @@ commonFunction.ifMainPage = function (config) {
     if (config.mainPageId != null && !id(config.mainPageId).exists()) {
         return false;
     }
-    if (config.mainPageText != null && !textEndsWith(config.mainPageText).exists()) {
+    if (config.mainPageText != null && !textContains(config.mainPageText).exists()) {
         return false;
     }
     return true;
@@ -393,8 +393,8 @@ commonFunction.getCaptureImg = function () {
 * @param text
 */
 commonFunction.clickByText = function (text) {
-    if (textEndsWith(text).exists()) {
-        textEndsWith(text).find().forEach(function (pos) {
+    if (textContains(text).exists()) {
+        textContains(text).find().forEach(function (pos) {
             let posb = pos.bounds();
             if (posb.centerX() > 0 && posb.centerY() > 0) {
                 click(posb.centerX(), posb.centerY());
