@@ -6,6 +6,8 @@ var defaultConfig = {
     goodsModuleName: "逛逛领金币",
     moduleNameArray: [],  //模块名称数组
     scanTimes: 10,     //浏览次数
+    swipeStart: 1 / 2,     //上滑起始点
+    swipeEnd: 1 / 4,     //上滑结束点
     launchAppWaitTime: 10 * 1000   //等待app启动时间
 }
 
@@ -94,7 +96,7 @@ commonFunction.scanVideoNotIn = function (config) {
  * @param {配置属性：startVideoBtnId} config 
  */
 commonFunction.scanVideoIn = function (config) {
-    if(config.startVideoBtnId != null){
+    if (config.startVideoBtnId != null) {
         if (id(config.startVideoBtnId).findOne(500) != null) {
             id(config.startVideoBtnId).find().forEach(function (pos) {
                 let posb = pos.bounds();
@@ -109,7 +111,7 @@ commonFunction.scanVideoIn = function (config) {
         }
         swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
     }
-    if(config.startVideoBtnText != null){
+    if (config.startVideoBtnText != null) {
         if (textContains(config.startVideoBtnText).findOne(500) != null) {
             textContains(config.startVideoBtnText).find().forEach(function (pos) {
                 let posb = pos.bounds();
@@ -189,7 +191,7 @@ commonFunction.scanSingleArticle = function (config) {
             for (let i = 1; i <= config.scanTimes; i++) {
                 commonFunction.preHandle();
                 toastLog("浏览文章:" + i + "/" + config.scanTimes);
-                swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);
+                swipe(device.width / 2, device.height * config.swipeStart, device.width / 2, device.height * config.swipeEnd, 1000);
                 sleep(random(2, 5) * 1000);
             }
             toastLog("浏览文章结束");
@@ -201,7 +203,7 @@ commonFunction.scanSingleArticle = function (config) {
             for (let i = 1; i <= config.scanTimes; i++) {
                 commonFunction.preHandle();
                 toastLog("浏览文章:" + i + "/" + config.scanTimes);
-                swipe(device.width / 2, device.height / 2, device.width / 2, device.height / 4, 2000);
+                swipe(device.width / 2, device.height * config.swipeStart, device.width / 2, device.height * config.swipeEnd, 1000);
                 sleep(random(2, 5) * 1000);
             }
             toastLog("浏览文章结束");
@@ -215,6 +217,17 @@ commonFunction.preHandle = function () {
     commonFunction.clickByText("拒绝");
     //闪电盒子
     commonFunction.clickById("unlike_ll");//不喜欢 按钮
+    //淘最热点
+    let showAllArticleText = "查看全文";
+    if (textContains(showAllArticleText).exists()) {
+        textContains(showAllArticleText).find().forEach(function (pos) {
+            let posb = pos.bounds();
+            if (posb.centerX() > 0 && posb.centerX() < device.width && posb.centerY() > 300 && posb.centerY() < (device.height - 300)) {
+                click(posb.centerX(), posb.centerY());
+                toastLog("点击了" + text);
+            }
+        });
+    }
 }
 
 

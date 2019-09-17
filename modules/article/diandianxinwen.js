@@ -1,7 +1,7 @@
 var commonFunction = require('modules/commonFunction.js');
 var config = {
     appName: "点点新闻",
-    articleId: "image_1",
+    articleId: "iv_image",
     startVideoBtnId: "iv_video_start",
     timerId: "back",
     mainPageId: "home",

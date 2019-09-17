@@ -1,10 +1,10 @@
 var commonFunction = require('modules/commonFunction.js');
 var config = {
     appName: "光影新闻",
-    articleId: "i_",
+    articleText: "00:00",
     startVideoBtnId: "i8",
-    timerId: "i6",
-    mainPageId: "c0"
+    timerText: "2019-",
+    mainPageText: "搜你想搜的"
 }
 
 startSelect();
