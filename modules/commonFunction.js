@@ -216,7 +216,7 @@ commonFunction.scanSingleArticle = function (config) {
 commonFunction.preHandle = function () {
     commonFunction.clickByText("拒绝");
     //闪电盒子
-    commonFunction.clickById("unlike_ll");//不喜欢 按钮
+    commonFunction.clickById("unlike_iv");//不喜欢 按钮
     //淘最热点
     let showAllArticleText = "查看全文";
     if (textContains(showAllArticleText).exists()) {

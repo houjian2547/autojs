@@ -29,19 +29,19 @@ function startSelect() {
  * 逛逛领币：商品模块
  */
 function scanGoods(joinConfig) {
-    joinConfig.articleId = "rmb_price";
-    joinConfig.timerId = "unlike_ll";
+    joinConfig.articleId = "retial_price_tv";
+    joinConfig.timerId = "unlike_iv";
     //划过直播区
     while (true) {
         let liveZoneFlag = "直播中";
         let LiveZoneEndFlag = "更多热门直播";
         if (textEndsWith(LiveZoneEndFlag).exists() || id(joinConfig.articleId).exists()) {
             toastLog("已经出直播区");
-            swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
+            swipe(device.width / 2, device.height / 6 * 5, device.width / 2, device.height / 6, 500);//下滑
             break;
         } else if (textEndsWith(liveZoneFlag).exists()) {
             toastLog("还在直播区，滑动");
-            swipe(device.width / 2, device.height / 4 * 3, device.width / 2, device.height / 4, 2000);//下滑
+            swipe(device.width / 2, device.height / 6 * 5, device.width / 2, device.height / 6, 500);//下滑
         }
     }
     while (true) {
