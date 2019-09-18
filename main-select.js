@@ -26,8 +26,6 @@ var scriptNameArray = commonFunction.objTransKeyArray(scriptName_appName_obj);
 var appZHNameArray = commonFunction.objTransValueArray(scriptName_appName_obj);
 var littleVideoAppNameArray =
     [
-        scriptName_appName_obj.zhangshangredian_articleAndLittleVideo,
-        scriptName_appName_obj.xiaoniaokankan_articleAndLittleVideo,
         scriptName_appName_obj.huoshanjisuban_littleVideo,
         scriptName_appName_obj.shuabaoduanshipin_littleVideo,
         scriptName_appName_obj.kuaishoujisuban_littleVideo
@@ -70,8 +68,8 @@ function scanLittlVideos() {
     let normalRumTime;
     while (true) {
         for (let i = 0; i < littleVideoAppNameArray.length; i++) {
-            if (i < 3) {
-                normalRumTime = 10 * 60; //掌上热点，小鸟看看，火山极速版   10分钟
+            if (i < 1) {
+                normalRumTime = 10 * 60; //火山极速版   10分钟
             } else {
                 normalRumTime = 30 * 60; //刷宝短视频，快手极速版
             }

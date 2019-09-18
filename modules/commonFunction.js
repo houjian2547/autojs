@@ -214,7 +214,7 @@ commonFunction.scanSingleArticle = function (config) {
 
 //文章内前置处理
 commonFunction.preHandle = function () {
-    commonFunction.clickByText("拒绝");
+    // commonFunction.clickByText("拒绝");
     //闪电盒子
     commonFunction.clickById("unlike_iv");//不喜欢 按钮
     //淘最热点
