@@ -4,7 +4,6 @@ var commonFunction = require('modules/commonFunction.js');
 var scriptName_appName_obj = {
     zhifubao_other: "支付宝",
     shandianhezi_article: "闪电盒子",
-    taozuiredian_article: "淘最热点",
     weili_article: "微鲤",
     xiangkan_article: "想看",
     souhuzixun_article: "搜狐资讯",
