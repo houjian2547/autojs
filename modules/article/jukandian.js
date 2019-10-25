@@ -36,7 +36,7 @@ function startSelect() {
     preHandle_app();
     if (joinConfig.moduleNameArray[moduleIndex] == joinConfig.articleModuleName) {
         while (true) {
-            preHandle_article();
+            // preHandle_article();
             commonFunction.selectArticleById(joinConfig);
         }
     } else if (joinConfig.moduleNameArray[moduleIndex] == joinConfig.videoModuleName) {
@@ -54,7 +54,7 @@ function preHandle_app() {
 }
 
 function preHandle_article() {
-    commonFunction.clickByText("领金币");
+    // commonFunction.clickByText("领金币");
     commonFunction.clickByText("继续阅读");
     commonFunction.clickByText("继续赚钱");
     commonFunction.clickByText("忽略");

@@ -14,7 +14,6 @@ var scriptName_appName_obj = {
     tutoutiao_article: "兔头条",
     jingcaitoutiao_article: "精彩头条",
     guangyingxinwen_article: "光影新闻",
-    zhangshangredian_articleAndLittleVideo: "掌上热点",
     xiaoniaokankan_articleAndLittleVideo: "小鸟看看",
     shuabaoduanshipin_littleVideo: "刷宝短视频",
     huoshanjisuban_littleVideo: "火山极速版",
@@ -51,7 +50,7 @@ function mainEntrence() {
 function stopCurrentScript(exectuion) {
     let isIExec = true;
     while (isIExec) {
-        if (new Date().getHours() < 7 || new Date().getHours() >= 23) {
+        if (new Date().getHours() < 7 || new Date().getHours() >24) {
             isIExec = false;
         }
         sleep(60 * 1000);//每一分钟检测一次
@@ -68,7 +67,7 @@ function scanLittlVideos() {
     while (true) {
         for (let i = 0; i < littleVideoAppNameArray.length; i++) {
             if (i < 1) {
-                normalRumTime = 10 * 60; //火山极速版   10分钟
+                normalRumTime = 10* 60; //火山极速版   10分钟
             } else {
                 normalRumTime = 30 * 60; //刷宝短视频，快手极速版
             }

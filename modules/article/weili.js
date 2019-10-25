@@ -35,4 +35,5 @@ function closeAd(){
     commonFunction.clickById(readAwardId);
     commonFunction.clickById(readTimeNoticeId);
     commonFunction.clickById(readTimeBtnId);
+    commonFunction.clickByText("北大青鸟");
 }

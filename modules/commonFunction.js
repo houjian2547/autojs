@@ -8,7 +8,7 @@ var defaultConfig = {
     scanTimes: 10,     //浏览次数
     swipeStart: 1 / 2,     //上滑起始点
     swipeEnd: 1 / 4,     //上滑结束点
-    launchAppWaitTime: 10 * 1000   //等待app启动时间
+    launchAppWaitTime: 5 * 1000   //等待app启动时间
 }
 
 /**
