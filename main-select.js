@@ -2,25 +2,25 @@ auto();
 var commonFunction = require('modules/commonFunction.js');
 
 var scriptName_appName_obj = {
-    zhifubao_other: "支付宝",
-    shandianhezi_article: "闪电盒子",
+    kuaikandian_articleAndLittleVideo: "快看点",
     weili_article: "微鲤看看",
     xiangkan_article: "想看",
-    souhuzixun_article: "搜狐资讯",
-    jukandian_article: "聚看点",
     zhongqingkandian_article: "中青看点",
-    ertoutiao_article: "二头条",
-    diandianxinwen_article: "点点新闻",
-    tutoutiao_article: "兔头条",
-    guangyingxinwen_article: "光影新闻",
-    xiaoniaokankan_articleAndLittleVideo: "小鸟看看",
-    kuaikandian_articleAndLittleVideo: "快看点",
     taokandian_littleVideo: "淘看点",
     tuituigaoxiao_littleVideo: "推推搞笑",
     shuabaoduanshipin_littleVideo: "刷宝短视频",
     caidanshipin_littleVideo: "彩蛋视频",
     huoshanjisuban_littleVideo: "火山极速版",
-    kuaishoujisuban_littleVideo: "快手极速版"
+    kuaishoujisuban_littleVideo: "快手极速版",
+    shandianhezi_article: "闪电盒子",
+    souhuzixun_article: "搜狐资讯",
+    jukandian_article: "聚看点",
+    ertoutiao_article: "二头条",
+    diandianxinwen_article: "点点新闻",
+    tutoutiao_article: "兔头条",
+    guangyingxinwen_article: "光影新闻",
+    xiaoniaokankan_articleAndLittleVideo: "小鸟看看",
+    zhifubao_other: "支付宝"
 };
 
 var scriptNameArray = commonFunction.objTransKeyArray(scriptName_appName_obj);

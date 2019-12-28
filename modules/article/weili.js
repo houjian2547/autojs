@@ -8,7 +8,17 @@ var config = {
     scanTimes: 6
 }
 
-startSelect();
+start();
+//只刷 文章
+function start() {
+    let joinConfig = commonFunction.assignConfig(config);
+    while (true) {
+        closeAd();
+        commonFunction.selectArticleById(joinConfig);
+    }
+}
+
+// 手动选择 文章和视频
 function startSelect() {
     let joinConfig = commonFunction.assignConfig(config);
     joinConfig.moduleNameArray = [joinConfig.articleModuleName, joinConfig.videoModuleName];
@@ -26,9 +36,8 @@ function startSelect() {
     }
 }
 
-
+//关闭广告
 function closeAd(){
-    //微鲤
     let readAwardId = "text_open";
     let readTimeNoticeId = "text_ok";
     let readTimeBtnId = "bt_ok";

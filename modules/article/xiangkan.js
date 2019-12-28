@@ -7,7 +7,18 @@ var config = {
     mainPageId: "tab_icon"
 }
 
-startSelect();
+start();
+
+//只刷文章 
+function start() {
+    let joinConfig = commonFunction.assignConfig(config);
+    while (true) {
+        preHandle();
+        commonFunction.selectArticleById(joinConfig);
+    }
+}
+
+
 function startSelect() {
     let joinConfig = commonFunction.assignConfig(config);
     joinConfig.moduleNameArray = [joinConfig.articleModuleName, joinConfig.videoModuleName];

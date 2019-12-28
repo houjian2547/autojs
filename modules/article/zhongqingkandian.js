@@ -3,11 +3,21 @@ var config = {
     appName: "中青看点",
     articleText: "阅读",
     startVideoBtnText: "播放",
-    timerText: "评论",
+    timerText: "说说你的观点...",
     mainPageText: "推荐"
 }
 
-startSelect();
+start();
+
+//只刷文章
+function start() {
+    let joinConfig = commonFunction.assignConfig(config);
+    while (true) {
+        preHandle();
+        commonFunction.selectArticleById(joinConfig);
+    }
+}
+
 function startSelect() {
     let joinConfig = commonFunction.assignConfig(config);
     joinConfig.moduleNameArray = [joinConfig.articleModuleName, joinConfig.videoModuleName];
