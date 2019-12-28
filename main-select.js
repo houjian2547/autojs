@@ -4,7 +4,7 @@ var commonFunction = require('modules/commonFunction.js');
 var scriptName_appName_obj = {
     zhifubao_other: "支付宝",
     shandianhezi_article: "闪电盒子",
-    weili_article: "微鲤",
+    weili_article: "微鲤看看",
     xiangkan_article: "想看",
     souhuzixun_article: "搜狐资讯",
     jukandian_article: "聚看点",
@@ -12,11 +12,13 @@ var scriptName_appName_obj = {
     ertoutiao_article: "二头条",
     diandianxinwen_article: "点点新闻",
     tutoutiao_article: "兔头条",
-    jingcaitoutiao_article: "精彩头条",
     guangyingxinwen_article: "光影新闻",
     xiaoniaokankan_articleAndLittleVideo: "小鸟看看",
     kuaikandian_articleAndLittleVideo: "快看点",
+    taokandian_littleVideo: "淘看点",
+    tuituigaoxiao_littleVideo: "推推搞笑",
     shuabaoduanshipin_littleVideo: "刷宝短视频",
+    caidanshipin_littleVideo: "彩蛋视频",
     huoshanjisuban_littleVideo: "火山极速版",
     kuaishoujisuban_littleVideo: "快手极速版"
 };
@@ -26,6 +28,9 @@ var appZHNameArray = commonFunction.objTransValueArray(scriptName_appName_obj);
 var littleVideoAppNameArray =
     [
         scriptName_appName_obj.huoshanjisuban_littleVideo,
+        scriptName_appName_obj.taokandian_littleVideo,
+        scriptName_appName_obj.tuituigaoxiao_littleVideo,
+        scriptName_appName_obj.caidanshipin_littleVideo,
         scriptName_appName_obj.shuabaoduanshipin_littleVideo,
         scriptName_appName_obj.kuaishoujisuban_littleVideo
     ];
@@ -51,10 +56,10 @@ function mainEntrence() {
 function stopCurrentScript(exectuion) {
     let isIExec = true;
     while (isIExec) {
-        if (new Date().getHours() < 7 || new Date().getHours() >24) {
+        if (new Date().getHours() < 8 || new Date().getHours() > 22) {
             isIExec = false;
         }
-        sleep(60 * 1000);//每一分钟检测一次
+        sleep(10 * 1000);//每10秒检测一次
     }
     //停止脚本
     toastLog("停止当前脚本");
@@ -68,9 +73,9 @@ function scanLittlVideos() {
     while (true) {
         for (let i = 0; i < littleVideoAppNameArray.length; i++) {
             if (i < 1) {
-                normalRumTime = 10* 60; //火山极速版   10分钟
+                normalRumTime = 3 * 60; //火山极速版   10分钟
             } else {
-                normalRumTime = 30 * 60; //刷宝短视频，快手极速版
+                normalRumTime = 20 * 60; //刷宝短视频，快手极速版
             }
             commonFunction.enterMainPage(littleVideoAppNameArray[i]);
             exec(littleVideoAppNameArray[i], normalRumTime);
@@ -87,11 +92,12 @@ function exec(appName, seconds) {
     while (isIExec) {
         //计时
         let runSeconds = ((new Date().getTime()) - startDate.getTime()) / 1000;
-        toastLog(appName + "已执行" + runSeconds / 60 + "分钟");
+        let runMinute =  Math.floor(runSeconds / 60) ;
+        toastLog(appName + "已执行" + runMinute + "分钟");
         if (runSeconds > seconds) {
             isIExec = false;
         }
-        sleep(60 * 1000);//每一分钟检测一次
+        sleep(10 * 1000);//每10秒检测一次
     }
     //停止脚本
     toastLog(appName + "执行停止");
