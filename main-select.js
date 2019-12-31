@@ -61,7 +61,7 @@ function mainEntrence() {
 function stopCurrentScript(exectuion) {
     let isIExec = true;
     while (isIExec) {
-        if (new Date().getHours() < 8 || new Date().getHours() > 22) {
+        if (new Date().getHours() < 9 || new Date().getHours() > 22) {
             isIExec = false;
         }
         sleep(10 * 1000);//每10秒检测一次
